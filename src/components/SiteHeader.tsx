@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PhoneIcon } from "./icons";
 
@@ -26,6 +27,7 @@ export default function SiteHeader({
   phoneHref,
 }: Props) {
   const [scrolled, setScrolled] = useState(false);
+  const onRequestPage = usePathname().startsWith("/request-information");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -96,6 +98,7 @@ export default function SiteHeader({
           )}
           <Link
             href="/request-information/"
+            aria-current={onRequestPage ? "page" : undefined}
             className="inline-flex min-h-11 items-center whitespace-nowrap rounded-md bg-brand px-3.5 text-sm font-medium text-white hover:bg-ink sm:px-5 sm:text-[15px]"
           >
             <span className="sm:hidden">Request info</span>
