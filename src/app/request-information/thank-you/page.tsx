@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
-import { getSettings, telHref } from "@/lib/content";
+import { getRequestPage, getSettings, telHref } from "@/lib/content";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
@@ -15,14 +15,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ThankYouPage() {
-  const settings = await getSettings();
+  const [settings, copy] = await Promise.all([getSettings(), getRequestPage()]);
   return (
     <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-start gap-5 px-4 py-16 sm:px-6 sm:py-24">
       <h1 className="font-serif text-[40px] font-semibold leading-tight sm:text-[52px]">
-        Thank you
+        {copy.thankYouHeading || "Thank you"}
       </h1>
-      {settings.request?.thankYou && (
-        <p className="text-[17px] leading-relaxed text-body">{settings.request.thankYou}</p>
+      {copy.thankYou && (
+        <p className="text-[17px] leading-relaxed text-body">{copy.thankYou}</p>
       )}
       {settings.phone && (
         <a

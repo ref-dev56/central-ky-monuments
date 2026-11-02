@@ -7,7 +7,7 @@ import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import BusinessJsonLd from "@/components/BusinessJsonLd";
-import { getSettings, readImageSize, telHref } from "@/lib/content";
+import { getHome, getSettings, readImageSize, telHref } from "@/lib/content";
 import { SITE_URL } from "@/lib/seo";
 
 // Site-wide defaults; each page sets its own title, description and preview.
@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
-  const settings = await getSettings();
+  const [settings, home] = await Promise.all([getSettings(), getHome()]);
 
   return (
     <html lang="en" className="h-full antialiased">
@@ -40,13 +40,19 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           phone={settings.phone}
           phoneHref={telHref(settings.phone)}
           logoSize={settings.logo ? readImageSize(settings.logo) : undefined}
-          logoMarkSize={settings.logoMark ? readImageSize(settings.logoMark) : undefined}
+          logoMarkSize={
+            settings.logoMark ? readImageSize(settings.logoMark) : undefined
+          }
         />
         <div id="main" className="flex flex-1 flex-col">
           {children}
         </div>
         <SiteFooter settings={settings} />
-        <BusinessJsonLd settings={settings} />
+        <BusinessJsonLd
+          settings={settings}
+          description={home.heroIntro}
+          image={home.heroImage}
+        />
       </body>
     </html>
   );

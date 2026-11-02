@@ -69,24 +69,25 @@ export function readImageSize(src: string) {
  * category, stones are ordered by SKU so the layout is stable between builds.
  */
 export async function getGalleryStones(categorySlug?: string) {
-  const [stones, categories] = await Promise.all([getStones(), getCategories()]);
+  const [stones, categories] = await Promise.all([
+    getStones(),
+    getCategories(),
+  ]);
 
   const shaped = stones
     .filter((s) => !categorySlug || s.category.slug === categorySlug)
-    .map(
-      (s): GalleryStone => ({
-        sku: s.sku,
-        name: s.name,
-        description: s.description ?? "",
-        materials: (s.materials ?? []).filter((m): m is string => !!m),
-        sizes: (s.sizes ?? []).filter((m): m is string => !!m),
-        image: s.image,
-        imageAlt: s.imageAlt || s.name,
-        ...readImageSize(s.image),
-        categoryName: s.category.name,
-        categorySlug: s.category.slug,
-      }),
-    )
+    .map((s): GalleryStone => ({
+      sku: s.sku,
+      name: s.name,
+      description: s.description ?? "",
+      materials: (s.materials ?? []).filter((m): m is string => !!m),
+      sizes: (s.sizes ?? []).filter((m): m is string => !!m),
+      image: s.image,
+      imageAlt: s.imageAlt || s.name,
+      ...readImageSize(s.image),
+      categoryName: s.category.name,
+      categorySlug: s.category.slug,
+    }))
     .sort((a, b) => a.sku.localeCompare(b.sku));
 
   // Round-robin across categories, in their CMS sort order.
@@ -110,6 +111,27 @@ export function telHref(phone?: string | null) {
   return `tel:+${digits.length === 10 ? `1${digits}` : digits}`;
 }
 
+/** The Home page banner (content/pages/home.json). */
+export async function getHome() {
+  const { data } = await client.queries.home({ relativePath: "home.json" });
+  return data.home;
+}
+
+/** The Request information page and its thank-you page (content/pages/request.json). */
+export async function getRequestPage() {
+  const { data } = await client.queries.request({
+    relativePath: "request.json",
+  });
+  return data.request;
+}
+
+/** "Lexington, Georgetown and Paris" */
+export function joinTowns(towns: string[]) {
+  return towns.length > 1
+    ? `${towns.slice(0, -1).join(", ")} and ${towns.at(-1)}`
+    : (towns[0] ?? "");
+}
+
 /** The About page (content/pages/about.json). */
 export async function getAbout() {
   const { data } = await client.queries.about({ relativePath: "about.json" });
@@ -124,7 +146,9 @@ export async function getFaq() {
 
 /** The privacy policy (content/pages/privacy.json). */
 export async function getPrivacy() {
-  const { data } = await client.queries.privacy({ relativePath: "privacy.json" });
+  const { data } = await client.queries.privacy({
+    relativePath: "privacy.json",
+  });
   return data.privacy;
 }
 

@@ -11,6 +11,7 @@ type Props = {
   stones: StoneOption[];
   phone?: string | null;
   phoneHref?: string;
+  submitLabel?: string | null;
 };
 
 type Fields = {
@@ -66,7 +67,7 @@ function validate(f: Fields): Errors {
  * Lead form. Arriving from a stone's "Ask about this design" link
  * (?stone=SKU) fills in the design and shows its photo.
  */
-export default function RequestForm({ stones, phone, phoneHref }: Props) {
+export default function RequestForm({ stones, phone, phoneHref, submitLabel }: Props) {
   const router = useRouter();
   const [stone, setStone] = useState<StoneOption | null>(null);
   const [fields, setFields] = useState<Fields>({
@@ -353,7 +354,7 @@ export default function RequestForm({ stones, phone, phoneHref }: Props) {
           disabled={status === "sending"}
           className="inline-flex min-h-[52px] items-center justify-center rounded-md bg-brand px-8 text-base font-medium text-white hover:bg-ink disabled:opacity-70 max-sm:w-full"
         >
-          {status === "sending" ? "Sending…" : "Send request"}
+          {status === "sending" ? "Sending…" : submitLabel || "Send request"}
         </button>
       </div>
     </form>
