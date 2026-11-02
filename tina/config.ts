@@ -339,6 +339,33 @@ export default defineConfig({
             ],
           },
           {
+            type: "object",
+            name: "request",
+            label: "Request information page",
+            fields: [
+              {
+                type: "string",
+                name: "intro",
+                label: "Intro text",
+                ui: { component: "textarea" },
+              },
+              {
+                type: "string",
+                name: "nextSteps",
+                label: "What happens next",
+                list: true,
+                description: "Each step in the numbered list beside the form.",
+              },
+              {
+                type: "string",
+                name: "thankYou",
+                label: "Thank-you message",
+                description: "Shown after someone sends the form.",
+                ui: { component: "textarea" },
+              },
+            ],
+          },
+          {
             type: "image",
             name: "logoMark",
             label: "Logo mark (small, for mobile header)",
