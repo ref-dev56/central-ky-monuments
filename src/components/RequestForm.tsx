@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
+import Turnstile from "./Turnstile";
 
 export type StoneOption = { sku: string; name: string; image: string };
 
@@ -40,6 +41,8 @@ const TIMELINES = [
 /** Where submissions go: the Google Apps Script web app URL (set at build time). */
 const ENDPOINT = process.env.NEXT_PUBLIC_LEAD_ENDPOINT;
 const THANK_YOU = "/request-information/thank-you/";
+/** Cloudflare Turnstile site key (public). Without it the spam check is skipped. */
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 const inputClass =
   "min-h-12 w-full rounded-md border border-input-border bg-white px-3.5 text-base text-ink " +
@@ -82,8 +85,15 @@ export default function RequestForm({ stones, phone, phoneHref, submitLabel }: P
     website: "",
   });
   const [errors, setErrors] = useState<Errors>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "failed">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "failed" | "verifying">("idle");
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileReset, setTurnstileReset] = useState(0);
   const form = useRef<HTMLFormElement>(null);
+  const onToken = useCallback((token: string | null) => {
+    setTurnstileToken(token);
+    // Clear the "still checking" message once the check finishes.
+    if (token) setStatus((s) => (s === "verifying" ? "idle" : s));
+  }, []);
 
   // Static pages can't read the query string on the server, so pick up
   // ?stone= once in the browser.
@@ -119,6 +129,7 @@ export default function RequestForm({ stones, phone, phoneHref, submitLabel }: P
       design, name, phone, email, contactMethod, cemetery, timeline, message,
       sku: stone && design.includes(stone.sku) ? stone.sku : "",
       page: window.location.href,
+      turnstileToken,
     };
 
     if (!ENDPOINT) {
@@ -127,6 +138,12 @@ export default function RequestForm({ stones, phone, phoneHref, submitLabel }: P
         return router.push(THANK_YOU);
       }
       setStatus("failed");
+      return;
+    }
+
+    // The spam check usually finishes while the visitor is typing.
+    if (TURNSTILE_SITE_KEY && !turnstileToken) {
+      setStatus("verifying");
       return;
     }
 
@@ -144,6 +161,8 @@ export default function RequestForm({ stones, phone, phoneHref, submitLabel }: P
       router.push(THANK_YOU);
     } catch {
       setStatus("failed");
+      // Each Turnstile token works once, so get a fresh one for the retry.
+      setTurnstileReset((n) => n + 1);
     }
   }
 
@@ -332,6 +351,26 @@ export default function RequestForm({ stones, phone, phoneHref, submitLabel }: P
         </Link>
         .
       </p>
+
+      {TURNSTILE_SITE_KEY && (
+        <Turnstile siteKey={TURNSTILE_SITE_KEY} onToken={onToken} resetSignal={turnstileReset} />
+      )}
+
+      {status === "verifying" && (
+        <div role="status" className="rounded-md border border-border bg-stone p-4 text-[15px] text-body">
+          We&rsquo;re running a quick spam check. Please press Send again in a
+          moment
+          {phone && phoneHref ? (
+            <>
+              , or call us at{" "}
+              <a href={phoneHref} className="font-semibold underline">
+                {phone}
+              </a>
+            </>
+          ) : null}
+          .
+        </div>
+      )}
 
       {status === "failed" && (
         <div role="alert" className="rounded-md border border-red-800/30 bg-red-50 p-4 text-[15px] text-red-900">
