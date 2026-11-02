@@ -2,11 +2,12 @@
  * Central Kentucky Monuments – website lead form.
  *
  * Receives the Request information form from the website, checks it with
- * Cloudflare Turnstile, adds a row to the "Leads" tab and emails the
- * addresses listed on the "Settings" tab.
+ * Cloudflare Turnstile and adds a row to the "Leads" tab. A timer that runs
+ * every minute emails new rows to the addresses on the "Settings" tab, so
+ * the website doesn't wait for the email to send.
  *
- * Setup (once):
- *   1. Run setup() to create the Leads and Settings tabs.
+ * Setup (once, and again after updating this code):
+ *   1. Run setup() to create the tabs and the every-minute email timer.
  *   2. Project Settings → Script properties → add TURNSTILE_SECRET.
  *   3. Deploy → New deployment → Web app (Execute as: Me, Access: Anyone).
  *
@@ -17,20 +18,30 @@ const LEADS_SHEET = 'Leads';
 const SETTINGS_SHEET = 'Settings';
 const LEAD_COLUMNS = [
   'Received', 'Name', 'Phone', 'Email', 'Best way to reach', 'Design',
-  'SKU', 'Cemetery', 'Timeline', 'Message', 'Page', 'Status', 'Notes',
+  'SKU', 'Cemetery', 'Timeline', 'Message', 'Page', 'Status', 'Notes', 'Emailed',
 ];
+const EMAILED_COL = LEAD_COLUMNS.indexOf('Emailed') + 1;
 
-/** Creates the Leads and Settings tabs. Safe to run again. */
+/** Creates the Leads and Settings tabs and the email timer. Safe to run again. */
 function setup() {
   const ss = SpreadsheetApp.getActive();
 
   let leads = ss.getSheetByName(LEADS_SHEET);
   if (!leads) leads = ss.insertSheet(LEADS_SHEET, 0);
+  const hadEmailedColumn = leads.getLastRow() > 0 &&
+    leads.getRange(1, EMAILED_COL).getValues()[0][0] === 'Emailed';
   leads.getRange(1, 1, 1, LEAD_COLUMNS.length).setValues([LEAD_COLUMNS]).setFontWeight('bold');
   leads.setFrozenRows(1);
   leads.getRange('A:A').setNumberFormat('m/d/yyyy h:mm am/pm');
   leads.getRange('J:J').setWrap(true);
   leads.setColumnWidth(10, 320);
+  leads.getRange(1, EMAILED_COL, leads.getMaxRows(), 1).setNumberFormat('m/d/yyyy h:mm am/pm');
+  // Upgrading from the first version: those rows were already emailed.
+  const last = leads.getLastRow();
+  if (!hadEmailedColumn && last > 1) {
+    const emailed = leads.getRange(2, EMAILED_COL, last - 1, 1);
+    emailed.setValues(emailed.getValues().map(function (r) { return [r[0] === '' ? 'earlier' : r[0]]; }));
+  }
 
   let settings = ss.getSheetByName(SETTINGS_SHEET);
   if (!settings) settings = ss.insertSheet(SETTINGS_SHEET);
@@ -45,6 +56,12 @@ function setup() {
     settings.setColumnWidth(2, 320);
     settings.setColumnWidth(3, 420);
   }
+
+  // One timer that sends emails for new rows every minute.
+  ScriptApp.getProjectTriggers()
+    .filter(function (t) { return t.getHandlerFunction() === 'sendPendingEmails'; })
+    .forEach(function (t) { ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger('sendPendingEmails').timeBased().everyMinutes(1).create();
 
   // Remove the empty default tab if it's still there.
   const blank = ss.getSheetByName('Sheet1');
@@ -72,8 +89,7 @@ function doPost(e) {
     };
     if (!lead.name || (!lead.phone && !lead.email)) return json_({ ok: false, error: 'missing' });
 
-    saveLead_(lead);
-    notify_(lead); // a failed email still keeps the row in the sheet
+    saveLead_(lead); // the email goes out within a minute (sendPendingEmails)
     return json_({ ok: true });
   } catch (err) {
     console.error(err);
@@ -87,8 +103,41 @@ function doGet() {
 }
 
 /**
+ * Runs every minute (set up by setup()). Emails each row whose "Emailed"
+ * cell is blank, then fills in the time. If an email fails, the cell says
+ * so; clear it to try again.
+ */
+function sendPendingEmails() {
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(5000)) return; // the previous run is still going
+  try {
+    const sheet = SpreadsheetApp.getActive().getSheetByName(LEADS_SHEET);
+    if (!sheet || sheet.getLastRow() < 2 || !setting_('Notify emails')) return;
+    const rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, LEAD_COLUMNS.length).getValues();
+    rows.forEach(function (r, i) {
+      if (r[EMAILED_COL - 1] !== '' || !r[1]) return;
+      const lead = {
+        name: r[1], phone: r[2], email: r[3], contactMethod: r[4], design: r[5],
+        sku: r[6], cemetery: r[7], timeline: r[8], message: r[9], page: r[10],
+      };
+      let result;
+      try {
+        notify_(lead);
+        result = new Date();
+      } catch (err) {
+        console.error('Email failed', err);
+        result = 'Failed: ' + String(err && err.message || err).slice(0, 100);
+      }
+      sheet.getRange(i + 2, EMAILED_COL).setValue(result);
+    });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/**
  * Run from the editor to test the sheet and email without the website.
- * Adds a row marked TEST and sends a test email.
+ * Adds a row marked TEST and emails it right away.
  */
 function sendTestLead() {
   const lead = {
@@ -98,7 +147,7 @@ function sendTestLead() {
     page: 'apps-script test',
   };
   saveLead_(lead, 'TEST');
-  notify_(lead);
+  sendPendingEmails();
 }
 
 function verifyTurnstile_(token) {
@@ -122,13 +171,14 @@ function saveLead_(lead, status) {
   try {
     sheet.appendRow([
       new Date(), lead.name, lead.phone, lead.email, lead.contactMethod, lead.design,
-      lead.sku, lead.cemetery, lead.timeline, lead.message, lead.page, status || 'New', '',
+      lead.sku, lead.cemetery, lead.timeline, lead.message, lead.page, status || 'New', '', '',
     ].map(cell_));
   } finally {
     lock.releaseLock();
   }
 }
 
+/** Emails one lead. Throws if sending fails. */
 function notify_(lead) {
   const to = setting_('Notify emails');
   if (!to) return;
@@ -154,12 +204,8 @@ function notify_(lead) {
     '</table><p style="font:13px Arial,sans-serif"><a href="' + SpreadsheetApp.getActive().getUrl() +
     '">Open the requests sheet</a></p>';
   const options = { htmlBody: html, name: 'Central Kentucky Monuments website' };
-  if (lead.email) options.replyTo = lead.email;
-  try {
-    MailApp.sendEmail(to, subject, text, options);
-  } catch (err) {
-    console.error('Email failed', err);
-  }
+  if (lead.email) options.replyTo = String(lead.email);
+  MailApp.sendEmail(to, subject, text, options);
 }
 
 function setting_(name) {

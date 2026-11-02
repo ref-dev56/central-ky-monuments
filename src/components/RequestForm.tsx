@@ -88,6 +88,8 @@ export default function RequestForm({ stones, phone, phoneHref, submitLabel }: P
   const [status, setStatus] = useState<"idle" | "sending" | "failed" | "verifying">("idle");
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [turnstileReset, setTurnstileReset] = useState(0);
+  // True once a send has taken longer than ~2 seconds (Apps Script can be slow to start).
+  const [slow, setSlow] = useState(false);
   const form = useRef<HTMLFormElement>(null);
   const onToken = useCallback((token: string | null) => {
     setTurnstileToken(token);
@@ -105,6 +107,15 @@ export default function RequestForm({ stones, phone, phoneHref, submitLabel }: P
     setStone(match);
     setFields((f) => ({ ...f, design: `${match.name} – ${match.sku}` }));
   }, [stones]);
+
+  useEffect(() => {
+    if (status !== "sending") return;
+    const timer = window.setTimeout(() => setSlow(true), 2000);
+    return () => {
+      window.clearTimeout(timer);
+      setSlow(false);
+    };
+  }, [status]);
 
   const set = <K extends keyof Fields>(key: K, value: Fields[K]) => {
     setFields((f) => ({ ...f, [key]: value }));
@@ -391,10 +402,21 @@ export default function RequestForm({ stones, phone, phoneHref, submitLabel }: P
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex min-h-[52px] items-center justify-center rounded-md bg-brand px-8 text-base font-medium text-white hover:bg-ink disabled:opacity-70 max-sm:w-full"
+          aria-describedby={slow ? "sending-note" : undefined}
+          className="inline-flex min-h-[52px] items-center justify-center gap-2.5 rounded-md bg-brand px-8 text-base font-medium text-white hover:bg-ink disabled:cursor-wait disabled:opacity-80 max-sm:w-full"
         >
-          {status === "sending" ? "Sending…" : submitLabel || "Send request"}
+          {status === "sending" && (
+            <span
+              aria-hidden="true"
+              className="size-4 animate-spin rounded-full border-2 border-white/40 border-t-white"
+            />
+          )}
+          {status === "sending" ? "Sending\u2026" : submitLabel || "Send request"}
         </button>
+        {/* Announced to screen readers as well as shown */}
+        <p id="sending-note" role="status" className="mt-3 min-h-5 text-sm text-muted">
+          {slow && "This can take a few seconds. Please don\u2019t close the page."}
+        </p>
       </div>
     </form>
   );
