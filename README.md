@@ -18,7 +18,8 @@ Requires Node.js 20 or newer.
 ```bash
 npm install
 npm run dev     # site at http://localhost:3000, CMS editor at http://localhost:3000/admin/index.html
-npm run build   # static export to ./out
+npm run build        # production build: reads content from TinaCloud (needs the env vars below)
+npm run build:local  # same output from the local files, no TinaCloud keys needed
 npm run lint
 ```
 
@@ -37,7 +38,8 @@ How it fits together:
 - `npm run dev` starts Tina's local content API (port 4001) and Next.js together. Saving in the editor writes straight to the JSON files, which you then commit like any other change.
 - Pages read content at build time through Tina's generated, typed client (`tina/__generated__/client`), e.g. `client.queries.stoneConnection()`.
 - `tina/__generated__/` and `public/admin/` are regenerated on every dev/build and are not committed.
-- The build currently runs Tina in **local mode** (`--local`). Editing on the live site needs a TinaCloud project; once that exists, set `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` on the host and drop `--local --skip-cloud-checks` from the build script.
+- **TinaCloud** powers editing on the live site (`/admin`). Netlify has `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` set; `npm run build` needs both. Editors' changes are saved as commits to the branch being edited, which triggers a Netlify rebuild.
+- TinaCloud must index a branch before it can build from it. If a build says a branch isn't indexed, make sure `tina/tina-lock.json` is committed (run `npm run dev` once after schema changes and commit the updated file).
 - Tina starts Next with `NODE_ENV=development`, so the build script forces `NODE_ENV=production` (via `cross-env`) for a correct production build.
 - The lead form's destination email is deliberately **not** in the CMS; it lives in the Google Sheet's settings so it can't be changed from the browser.
 
