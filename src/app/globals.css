@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/*
+ * Brand tokens. Tailwind v4 turns each of these into utility classes,
+ * e.g. --color-ivory -> bg-ivory / text-ivory, --font-serif -> font-serif.
+ */
+@theme {
+  /* Neutrals */
+  --color-ivory: #faf8f3; /* page background */
+  --color-stone: #efebe2; /* bands, footer */
+  --color-card: #fffdf8; /* lightbox, cards */
+  --color-sage-tint: #e3ebe5; /* soft highlight panels */
+  --color-border: #dcd7cc;
+  --color-input-border: #c9c3b6;
+
+  /* Text */
+  --color-ink: #192929; /* headings, main text */
+  --color-body: #3d4847; /* paragraphs */
+  --color-muted: #4f5b58; /* captions, labels */
+
+  /* Brand */
+  --color-brand: #2f4743; /* buttons, primary green */
+  --color-link: #3e5a70; /* text links */
+  --color-mid-green: #4f665f;
+  --color-sage: #6e877f;
+  --color-blue-gray: #748e8a;
+
+  /* Typography */
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+}
