@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import path from "node:path";
+import { imageSize } from "image-size";
 import client from "../../tina/__generated__/client";
 
 /**
@@ -28,6 +31,76 @@ export async function getStones() {
   return (data.stoneConnection.edges ?? [])
     .map((edge) => edge?.node)
     .filter((stone) => stone != null);
+}
+
+/** What the gallery and lightbox need for one stone (plain, serializable). */
+export type GalleryStone = {
+  sku: string;
+  name: string;
+  description: string;
+  materials: string[];
+  sizes: string[];
+  image: string;
+  imageAlt: string;
+  width: number;
+  height: number;
+  categoryName: string;
+  categorySlug: string;
+};
+
+/** Reads an uploaded image's pixel size from /public at build time. */
+function readImageSize(src: string) {
+  try {
+    const file = path.join(process.cwd(), "public", decodeURI(src));
+    const { width, height } = imageSize(fs.readFileSync(file));
+    if (width && height) return { width, height };
+  } catch {
+    // Missing or unreadable file: fall back to a 4:5 portrait shape.
+  }
+  return { width: 800, height: 1000 };
+}
+
+/**
+ * Stones shaped for the gallery, optionally limited to one category.
+ *
+ * On "All designs" the categories are interleaved (one upright, one marker,
+ * one bench, ...) so the collage mixes tall and wide shapes from the first
+ * row instead of starting with a block of same-size uprights. Within a
+ * category, stones are ordered by SKU so the layout is stable between builds.
+ */
+export async function getGalleryStones(categorySlug?: string) {
+  const [stones, categories] = await Promise.all([getStones(), getCategories()]);
+
+  const shaped = stones
+    .filter((s) => !categorySlug || s.category.slug === categorySlug)
+    .map(
+      (s): GalleryStone => ({
+        sku: s.sku,
+        name: s.name,
+        description: s.description ?? "",
+        materials: (s.materials ?? []).filter((m): m is string => !!m),
+        sizes: (s.sizes ?? []).filter((m): m is string => !!m),
+        image: s.image,
+        imageAlt: s.imageAlt || s.name,
+        ...readImageSize(s.image),
+        categoryName: s.category.name,
+        categorySlug: s.category.slug,
+      }),
+    )
+    .sort((a, b) => a.sku.localeCompare(b.sku));
+
+  // Round-robin across categories, in their CMS sort order.
+  const buckets = categories
+    .map((c) => shaped.filter((s) => s.categorySlug === c.slug))
+    .filter((bucket) => bucket.length > 0);
+  const mixed: GalleryStone[] = [];
+  for (let i = 0; mixed.length < shaped.length; i++) {
+    for (const bucket of buckets) if (bucket[i]) mixed.push(bucket[i]);
+    if (i > shaped.length) break; // safety net
+  }
+  // Stones whose category isn't in the list still appear, at the end.
+  for (const s of shaped) if (!mixed.includes(s)) mixed.push(s);
+  return mixed;
 }
 
 /** "(859) 555-0142" -> "tel:+18595550142" */

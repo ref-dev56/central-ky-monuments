@@ -194,6 +194,32 @@ export default defineConfig({
           },
           { type: "image", name: "logo", label: "Logo" },
           {
+            type: "object",
+            name: "home",
+            label: "Home page",
+            fields: [
+              {
+                type: "image",
+                name: "heroImage",
+                label: "Hero photo",
+                description:
+                  "Wide, calm photo shown behind the headline. At least 2000px wide.",
+              },
+              {
+                type: "string",
+                name: "heroEyebrow",
+                label: "Small line above the headline",
+              },
+              { type: "string", name: "heroHeadline", label: "Headline" },
+              {
+                type: "string",
+                name: "heroIntro",
+                label: "Intro text",
+                ui: { component: "textarea" },
+              },
+            ],
+          },
+          {
             type: "image",
             name: "logoMark",
             label: "Logo mark (small, for mobile header)",
