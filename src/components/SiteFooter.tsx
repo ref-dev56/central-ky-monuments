@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { telHref, type Settings } from "@/lib/content";
+import { readImageSize, telHref, type Settings } from "@/lib/content";
 
 const footerLinks = [
   { href: "/about/", label: "About us" },
@@ -26,9 +26,8 @@ export default function SiteFooter({ settings }: { settings: Settings }) {
             <Image
               src={logo}
               alt={businessName}
-              width={494}
-              height={112}
-              className="h-11 w-auto self-start"
+              {...readImageSize(logo)}
+              className="h-10 w-auto self-start"
             />
           ) : (
             <span className="font-serif text-2xl font-semibold">{businessName}</span>
