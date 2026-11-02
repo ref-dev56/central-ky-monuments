@@ -12,6 +12,9 @@ type Props = {
   logoMark?: string | null;
   phone?: string | null;
   phoneHref?: string;
+  /** Pixel sizes of the logo files, read at build time (keeps the shape right). */
+  logoSize?: { width: number; height: number };
+  logoMarkSize?: { width: number; height: number };
 };
 
 /**
@@ -25,6 +28,8 @@ export default function SiteHeader({
   logoMark,
   phone,
   phoneHref,
+  logoSize = { width: 2033, height: 287 },
+  logoMarkSize = { width: 444, height: 284 },
 }: Props) {
   const [scrolled, setScrolled] = useState(false);
   const onRequestPage = usePathname().startsWith("/request-information");
@@ -49,8 +54,8 @@ export default function SiteHeader({
             <Image
               src={logo}
               alt={businessName}
-              width={494}
-              height={112}
+              width={logoSize.width}
+              height={logoSize.height}
               loading="eager"
               className={`hidden w-auto transition-[height] duration-200 sm:block ${
                 scrolled ? "h-9" : "h-12"
@@ -67,8 +72,8 @@ export default function SiteHeader({
             <Image
               src={logoMark}
               alt=""
-              width={141}
-              height={112}
+              width={logoMarkSize.width}
+              height={logoMarkSize.height}
               loading="eager"
               className="h-8 w-auto shrink-0 sm:hidden"
             />

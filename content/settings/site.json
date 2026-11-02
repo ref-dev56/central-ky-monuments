@@ -1,6 +1,6 @@
 {
   "businessName": "Central Kentucky Monuments",
-  "logo": "/uploads/logo.png",
+  "logo": "/uploads/logo.svg",
   "shareImage": "/uploads/share-default.jpg",
   "home": {
     "heroImage": "/uploads/hero.jpg",
@@ -17,7 +17,7 @@
     ],
     "thankYou": "Thank you for reaching out. Someone from our team will be in touch within one business day. If it's easier, you're always welcome to call us."
   },
-  "logoMark": "/uploads/logo-mark.png",
+  "logoMark": "/uploads/logo-mark.svg",
   "phone": "(859) 555-0142",
   "email": "",
   "address": {

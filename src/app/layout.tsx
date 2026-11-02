@@ -7,7 +7,7 @@ import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import BusinessJsonLd from "@/components/BusinessJsonLd";
-import { getSettings, telHref } from "@/lib/content";
+import { getSettings, readImageSize, telHref } from "@/lib/content";
 import { SITE_URL } from "@/lib/seo";
 
 // Site-wide defaults; each page sets its own title, description and preview.
@@ -39,6 +39,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           logoMark={settings.logoMark}
           phone={settings.phone}
           phoneHref={telHref(settings.phone)}
+          logoSize={settings.logo ? readImageSize(settings.logo) : undefined}
+          logoMarkSize={settings.logoMark ? readImageSize(settings.logoMark) : undefined}
         />
         <div id="main" className="flex flex-1 flex-col">
           {children}
