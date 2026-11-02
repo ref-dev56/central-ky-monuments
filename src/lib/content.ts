@@ -52,8 +52,12 @@ export type GalleryStone = {
 export function readImageSize(src: string) {
   try {
     const file = path.join(process.cwd(), "public", decodeURI(src));
-    const { width, height } = imageSize(fs.readFileSync(file));
-    if (width && height) return { width, height };
+    const { width, height, orientation } = imageSize(fs.readFileSync(file));
+    // Phone photos are often stored sideways with a "rotate me" flag;
+    // swap the sides so the gallery reserves the shape people will see.
+    if (width && height) {
+      return orientation && orientation >= 5 ? { width: height, height: width } : { width, height };
+    }
   } catch {
     // Missing or unreadable file: fall back to a 4:5 portrait shape.
   }

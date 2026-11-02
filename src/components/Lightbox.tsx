@@ -121,6 +121,7 @@ export default function Lightbox({
                 alt={stone.imageAlt}
                 width={stone.width}
                 height={stone.height}
+                sizes="(min-width: 640px) 55vw, 100vw"
                 loading="eager"
                 className="max-h-[48vh] w-auto object-contain sm:max-h-[min(720px,calc(100dvh-48px))]"
               />
