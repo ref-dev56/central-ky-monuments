@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import ContactBand from "@/components/ContactBand";
 import PageIntro from "@/components/PageIntro";
@@ -6,10 +7,13 @@ import { getAbout, getSettings, present, readImageSize } from "@/lib/content";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [about, settings] = await Promise.all([getAbout(), getSettings()]);
-  return {
+  return pageMetadata({
+    settings,
+    path: "/about/",
+    seo: about.seo,
     title: `About us | ${settings.businessName}`,
-    description: about.intro ?? undefined,
-  };
+    description: about.intro,
+  });
 }
 
 export default async function AboutPage() {

@@ -31,6 +31,41 @@ const slugify = (value?: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
+/**
+ * "Search & sharing" fields, added to every page that has its own address.
+ * All optional: when blank, the site writes a sensible title and description.
+ */
+const seoField = {
+  type: "object" as const,
+  name: "seo",
+  label: "Search & sharing",
+  description: "Optional. How this page appears in Google and when a link is shared.",
+  fields: [
+    {
+      type: "string" as const,
+      name: "title",
+      label: "Page title",
+      description:
+        "Shown as the link in Google results. Aim for under 60 characters. Leave blank to use the default.",
+    },
+    {
+      type: "string" as const,
+      name: "description",
+      label: "Description",
+      description:
+        "The short summary under the link in Google. Aim for 120–155 characters. Leave blank to use the page intro.",
+      ui: { component: "textarea" as const },
+    },
+    {
+      type: "image" as const,
+      name: "image",
+      label: "Share image",
+      description:
+        "Shown when the link is shared by text or on social media. 1200 × 630 works best. Leave blank to use the site default.",
+    },
+  ],
+};
+
 export default defineConfig({
   branch,
 
@@ -174,6 +209,7 @@ export default defineConfig({
               "Two or three sentences shown at the top of the category page (helps search engines).",
             ui: { component: "textarea" },
           },
+          seoField,
         ],
       },
       {
@@ -228,6 +264,7 @@ export default defineConfig({
           },
           { type: "string", name: "ctaHeading", label: "Closing call-to-action heading" },
           { type: "string", name: "ctaText", label: "Closing call-to-action text" },
+          seoField,
         ],
       },
       {
@@ -268,6 +305,7 @@ export default defineConfig({
               },
             ],
           },
+          seoField,
         ],
       },
       {
@@ -292,6 +330,7 @@ export default defineConfig({
               { type: "rich-text", name: "body", label: "Text" },
             ],
           },
+          seoField,
         ],
       },
       {
@@ -312,6 +351,13 @@ export default defineConfig({
             required: true,
           },
           { type: "image", name: "logo", label: "Logo" },
+          {
+            type: "image",
+            name: "shareImage",
+            label: "Default share image",
+            description:
+              "Used when a page has no share image of its own (link previews in texts and social media). 1200 × 630.",
+          },
           {
             type: "object",
             name: "home",
@@ -336,6 +382,7 @@ export default defineConfig({
                 label: "Intro text",
                 ui: { component: "textarea" },
               },
+              seoField,
             ],
           },
           {
@@ -363,6 +410,7 @@ export default defineConfig({
                 description: "Shown after someone sends the form.",
                 ui: { component: "textarea" },
               },
+              seoField,
             ],
           },
           {

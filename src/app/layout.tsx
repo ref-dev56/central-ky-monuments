@@ -6,14 +6,17 @@ import "@fontsource/cormorant-garamond/600.css";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import BusinessJsonLd from "@/components/BusinessJsonLd";
 import { getSettings, telHref } from "@/lib/content";
+import { SITE_URL } from "@/lib/seo";
 
+// Site-wide defaults; each page sets its own title, description and preview.
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
   return {
+    metadataBase: new URL(SITE_URL),
     title: settings.businessName,
-    description:
-      "Granite memorials and headstones for families in Central Kentucky.",
+    applicationName: settings.businessName,
   };
 }
 
@@ -41,6 +44,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </div>
         <SiteFooter settings={settings} />
+        <BusinessJsonLd settings={settings} />
       </body>
     </html>
   );

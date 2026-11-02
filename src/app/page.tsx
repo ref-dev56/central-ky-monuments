@@ -1,9 +1,22 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import CategoryTabs from "@/components/CategoryTabs";
 import ContactBand from "@/components/ContactBand";
 import Gallery from "@/components/Gallery";
 import { getCategories, getGalleryStones, getSettings } from "@/lib/content";
+import { pageMetadata } from "@/lib/seo";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings();
+  return pageMetadata({
+    settings,
+    path: "/",
+    seo: settings.home?.seo,
+    title: `${settings.businessName} | Granite Headstones & Memorials`,
+    description: settings.home?.heroIntro,
+  });
+}
 
 export default async function Home() {
   const [settings, categories, stones] = await Promise.all([
