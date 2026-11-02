@@ -1,0 +1,15 @@
+# Netlify build settings. Netlify reads this file automatically, so the
+# values in the Netlify dashboard can be left at their defaults.
+[build]
+  command = "npm run build"
+  # Next.js static export writes the finished site here.
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Keep the CMS editor out of search results.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
