@@ -1,0 +1,17 @@
+{
+  "name": "Graceful Contour",
+  "sku": "CKM-005",
+  "category": "content/categories/upright-headstones.json",
+  "description": "A thoughtfully designed memorial featuring an asymmetrical curved profile and elegant proportions. Its distinctive shape provides a beautiful canvas for a personalized tribute.",
+  "materials": [
+    "Rose granite",
+    "Black granite",
+    "Gray granite",
+    "Blue Pearl granite"
+  ],
+  "sizes": [
+    "24\" × 30\" × 6\""
+  ],
+  "image": "/uploads/stones/05_rose_curved_upright.jpg",
+  "imageAlt": "Rose granite headstone with an asymmetrical curved top"
+}

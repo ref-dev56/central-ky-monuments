@@ -1,0 +1,16 @@
+{
+  "name": "Blue Ridge Upright",
+  "sku": "CKM-004",
+  "category": "content/categories/upright-headstones.json",
+  "description": "A distinguished upright monument featuring a sculpted top and bold granite construction. Its polished surface beautifully complements personalized lettering and decorative artwork.",
+  "materials": [
+    "Blue Pearl granite",
+    "Black granite",
+    "Gray granite"
+  ],
+  "sizes": [
+    "24\" × 36\" × 6\""
+  ],
+  "image": "/uploads/stones/04_blue_pearl_upright.jpg",
+  "imageAlt": "Blue pearl granite upright headstone"
+}

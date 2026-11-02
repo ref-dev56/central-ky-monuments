@@ -1,0 +1,16 @@
+{
+  "name": "Rosewood Heritage",
+  "sku": "CKM-003",
+  "category": "content/categories/upright-headstones.json",
+  "description": "A classic memorial with a softly contoured top and substantial granite base. The traditional silhouette provides a warm, enduring expression of remembrance.",
+  "materials": [
+    "Rose granite",
+    "Gray granite",
+    "Black granite"
+  ],
+  "sizes": [
+    "30\" × 28\" × 6\""
+  ],
+  "image": "/uploads/stones/03_rose_upright.jpg",
+  "imageAlt": "Rose granite upright headstone"
+}

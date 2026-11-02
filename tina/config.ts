@@ -88,6 +88,11 @@ export default defineConfig({
             label: "Category",
             collections: ["category"],
             required: true,
+            ui: {
+              // Show "Upright headstones" in the dropdown instead of the file name.
+              optionComponent: (values: Record<string, unknown>) =>
+                typeof values?.name === "string" ? values.name : undefined,
+            },
           },
           {
             type: "string",

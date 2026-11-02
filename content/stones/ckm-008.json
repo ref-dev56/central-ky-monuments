@@ -1,0 +1,16 @@
+{
+  "name": "Celtic Remembrance Cross",
+  "sku": "CKM-008",
+  "category": "content/categories/monuments-crosses.json",
+  "description": "A traditional Celtic cross memorial featuring a distinctive circular halo and detailed stonework. Its timeless symbolism offers a meaningful expression of faith, love, and remembrance.",
+  "materials": [
+    "Gray granite",
+    "Black granite",
+    "Dark Gray granite"
+  ],
+  "sizes": [
+    "24\" × 48\" × 8\""
+  ],
+  "image": "/uploads/stones/08_celtic_cross.jpg",
+  "imageAlt": "Gray granite Celtic cross memorial"
+}

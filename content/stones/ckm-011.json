@@ -1,0 +1,17 @@
+{
+  "name": "Gentle Rise Bevel",
+  "sku": "CKM-011",
+  "category": "content/categories/slant-bevel.json",
+  "description": "A low-profile granite marker with a gently raised, angled surface. Its simple, dignified design provides an attractive alternative to traditional upright memorials.",
+  "materials": [
+    "Gray granite",
+    "Black granite",
+    "Rose granite",
+    "Blue Pearl granite"
+  ],
+  "sizes": [
+    "24\" × 8\" × 12\""
+  ],
+  "image": "/uploads/stones/11_gray_bevel.jpg",
+  "imageAlt": "Gray granite bevel marker"
+}

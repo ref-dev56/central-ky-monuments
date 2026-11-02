@@ -1,0 +1,17 @@
+{
+  "name": "Heritage Classic Upright",
+  "sku": "CKM-001",
+  "category": "content/categories/upright-headstones.json",
+  "description": "A timeless upright memorial featuring a gently rounded top and traditional proportions. Its clean design offers ample space for personalized engravings and meaningful tributes.",
+  "materials": [
+    "Gray granite",
+    "Black granite",
+    "Rose granite",
+    "Blue Pearl granite"
+  ],
+  "sizes": [
+    "24\" × 30\" × 6\""
+  ],
+  "image": "/uploads/stones/01_gray_upright.jpg",
+  "imageAlt": "Gray granite upright headstone with a rounded top"
+}

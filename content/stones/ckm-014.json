@@ -1,0 +1,17 @@
+{
+  "name": "Classic Flush Marker",
+  "sku": "CKM-014",
+  "category": "content/categories/flat-markers.json",
+  "description": "A traditional flat granite marker designed to rest level with the surrounding lawn. Its understated appearance provides a simple and enduring way to honor a loved one.",
+  "materials": [
+    "Gray granite",
+    "Black granite",
+    "Rose granite",
+    "Blue Pearl granite"
+  ],
+  "sizes": [
+    "24\" × 12\" × 4\""
+  ],
+  "image": "/uploads/stones/14_gray_flat_marker.jpg",
+  "imageAlt": "Gray granite flat grave marker"
+}
