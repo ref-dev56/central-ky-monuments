@@ -7,9 +7,10 @@ import { defineConfig } from "tinacms";
  * edit made in the CMS is a normal Git commit. Images uploaded through the
  * CMS are saved to /public/uploads.
  *
- * Three collections:
+ * Collections:
  *   - Stones:        one file per memorial in the gallery
  *   - Categories:    the filter tabs and category pages
+ *   - About / FAQ / Privacy: one file each in content/pages
  *   - Site settings: one file with logo, phone, address, hours, etc.
  */
 
@@ -172,6 +173,124 @@ export default defineConfig({
             description:
               "Two or three sentences shown at the top of the category page (helps search engines).",
             ui: { component: "textarea" },
+          },
+        ],
+      },
+      {
+        name: "about",
+        label: "About page",
+        path: "content/pages",
+        format: "json",
+        match: { include: "about" },
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "title", label: "Headline", isTitle: true, required: true },
+          {
+            type: "string",
+            name: "intro",
+            label: "Intro",
+            ui: { component: "textarea" },
+          },
+          {
+            type: "image",
+            name: "photo",
+            label: "Photo (owner, team or showroom)",
+            description: "Optional. Without a photo, the story spans the full width.",
+          },
+          { type: "string", name: "photoAlt", label: "Photo description (for screen readers)" },
+          { type: "string", name: "storyHeading", label: "Story heading" },
+          {
+            type: "string",
+            name: "story",
+            label: "Story",
+            description: "Leave a blank line between paragraphs.",
+            ui: { component: "textarea" },
+          },
+          { type: "string", name: "stepsHeading", label: "Steps heading" },
+          {
+            type: "object",
+            name: "steps",
+            label: "How it works steps",
+            list: true,
+            ui: { itemProps: (item: { title?: string }) => ({ label: item?.title }) },
+            fields: [
+              { type: "string", name: "title", label: "Title" },
+              { type: "string", name: "text", label: "Text", ui: { component: "textarea" } },
+            ],
+          },
+          { type: "string", name: "serviceHeading", label: "Service area heading" },
+          {
+            type: "string",
+            name: "serviceIntro",
+            label: "Service area text",
+            description: "The towns themselves come from Site settings → Service area.",
+            ui: { component: "textarea" },
+          },
+          { type: "string", name: "ctaHeading", label: "Closing call-to-action heading" },
+          { type: "string", name: "ctaText", label: "Closing call-to-action text" },
+        ],
+      },
+      {
+        name: "faq",
+        label: "FAQ page",
+        path: "content/pages",
+        format: "json",
+        match: { include: "faq" },
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "title", label: "Headline", isTitle: true, required: true },
+          { type: "string", name: "intro", label: "Intro", ui: { component: "textarea" } },
+          {
+            type: "object",
+            name: "topics",
+            label: "Topics",
+            list: true,
+            ui: { itemProps: (item: { title?: string }) => ({ label: item?.title }) },
+            fields: [
+              { type: "string", name: "title", label: "Topic" },
+              {
+                type: "object",
+                name: "questions",
+                label: "Questions",
+                list: true,
+                ui: { itemProps: (item: { question?: string }) => ({ label: item?.question }) },
+                fields: [
+                  { type: "string", name: "question", label: "Question" },
+                  {
+                    type: "string",
+                    name: "answer",
+                    label: "Answer",
+                    description:
+                      "Two or three plain sentences that make sense on their own. Search engines and AI tools quote these.",
+                    ui: { component: "textarea" },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: "privacy",
+        label: "Privacy policy",
+        path: "content/pages",
+        format: "json",
+        match: { include: "privacy" },
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "title", label: "Title", isTitle: true, required: true },
+          { type: "datetime", name: "updated", label: "Last updated" },
+          { type: "string", name: "intro", label: "Summary", ui: { component: "textarea" } },
+          {
+            type: "object",
+            name: "sections",
+            label: "Sections",
+            list: true,
+            ui: { itemProps: (item: { heading?: string }) => ({ label: item?.heading }) },
+            fields: [
+              { type: "string", name: "heading", label: "Heading" },
+              { type: "rich-text", name: "body", label: "Text" },
+            ],
           },
         ],
       },

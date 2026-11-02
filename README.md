@@ -46,3 +46,7 @@ How it fits together:
 - Next.js image optimization is disabled (`images.unoptimized`) because a static export has no server; images are resized at build time instead.
 - Cache Components / Partial Prerendering are off because they can't run in a static export.
 - `trailingSlash: true` writes each page as `folder/index.html`, which works on every static host without redirect rules.
+
+### Troubleshooting
+- **Content changes don't show up in a local build:** Next caches the CMS data between builds. Delete the `.next` folder and build again.
+- **Rich text (e.g. the privacy policy) is stored as Markdown** inside the JSON files, even though the editor shows formatted text.
