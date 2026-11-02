@@ -49,7 +49,7 @@ export type GalleryStone = {
 };
 
 /** Reads an uploaded image's pixel size from /public at build time. */
-function readImageSize(src: string) {
+export function readImageSize(src: string) {
   try {
     const file = path.join(process.cwd(), "public", decodeURI(src));
     const { width, height } = imageSize(fs.readFileSync(file));
@@ -108,4 +108,36 @@ export function telHref(phone?: string | null) {
   const digits = (phone ?? "").replace(/\D/g, "");
   if (!digits) return undefined;
   return `tel:+${digits.length === 10 ? `1${digits}` : digits}`;
+}
+
+/** The About page (content/pages/about.json). */
+export async function getAbout() {
+  const { data } = await client.queries.about({ relativePath: "about.json" });
+  return data.about;
+}
+
+/** The FAQ page (content/pages/faq.json). */
+export async function getFaq() {
+  const { data } = await client.queries.faq({ relativePath: "faq.json" });
+  return data.faq;
+}
+
+/** The privacy policy (content/pages/privacy.json). */
+export async function getPrivacy() {
+  const { data } = await client.queries.privacy({ relativePath: "privacy.json" });
+  return data.privacy;
+}
+
+/** Drops the empty entries Tina lists can contain. */
+export function present<T>(items?: (T | null | undefined)[] | null): T[] {
+  return (items ?? []).filter((item): item is T => item != null && item !== "");
+}
+
+/** Turns a heading into an anchor id: "Ordering and timing" → "ordering-and-timing". */
+export function anchorId(text?: string | null) {
+  return (text ?? "")
+    .toLowerCase()
+    .replace(/&/g, " ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }

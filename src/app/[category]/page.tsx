@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import CategoryTabs from "@/components/CategoryTabs";
 import ContactBand from "@/components/ContactBand";
 import Gallery from "@/components/Gallery";
+import PageIntro from "@/components/PageIntro";
 import { getCategories, getGalleryStones, getSettings } from "@/lib/content";
 
 // Only the categories in the CMS get pages; anything else is a 404.
@@ -38,16 +39,7 @@ export default async function CategoryPage(props: PageProps<"/[category]">) {
 
   return (
     <main className="flex flex-1 flex-col">
-      <section className="border-b border-border bg-stone">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 pb-10 pt-12 sm:px-6 sm:pb-12 sm:pt-16">
-          <h1 className="font-serif text-[40px] font-semibold leading-tight sm:text-[52px]">
-            {category.name}
-          </h1>
-          {category.intro && (
-            <p className="max-w-2xl text-lg leading-relaxed text-body">{category.intro}</p>
-          )}
-        </div>
-      </section>
+      <PageIntro title={category.name} intro={category.intro} />
 
       <div className="mx-auto w-full max-w-6xl px-4 pb-16 pt-6 sm:px-6 sm:pt-8">
         <CategoryTabs categories={categories} active={category.slug} />
