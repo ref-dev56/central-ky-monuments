@@ -1,0 +1,17 @@
+{
+  "name": "Reflection Memorial Bench",
+  "sku": "CKM-012",
+  "category": "content/categories/benches.json",
+  "description": "A beautifully crafted granite bench offering a peaceful place for reflection and remembrance. Its substantial design provides both a meaningful tribute and a lasting place to honor loved ones.",
+  "materials": [
+    "Black granite",
+    "Gray granite",
+    "Rose granite",
+    "Blue Pearl granite"
+  ],
+  "sizes": [
+    "48\" × 18\" × 14\""
+  ],
+  "image": "/uploads/stones/12_black_memorial_bench.jpg",
+  "imageAlt": "Black granite memorial bench"
+}

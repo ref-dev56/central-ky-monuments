@@ -1,0 +1,17 @@
+{
+  "name": "Enduring Tribute Marker",
+  "sku": "CKM-016",
+  "category": "content/categories/flat-markers.json",
+  "description": "A durable, low-profile memorial featuring a broad inscription surface and classic granite construction. Its timeless appearance blends naturally into traditional cemetery landscapes.",
+  "materials": [
+    "Dark Gray granite",
+    "Black granite",
+    "Gray granite",
+    "Blue Pearl granite"
+  ],
+  "sizes": [
+    "24\" × 12\" × 4\""
+  ],
+  "image": "/uploads/stones/16_dark_flat_marker.jpg",
+  "imageAlt": "Dark gray granite flat grave marker"
+}
