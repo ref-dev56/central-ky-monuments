@@ -1,0 +1,23 @@
+{
+  "businessName": "Central Kentucky Monuments",
+  "logo": "/uploads/logo.png",
+  "logoMark": "/uploads/logo-mark.png",
+  "phone": "(859) 555-0142",
+  "email": "",
+  "address": {
+    "line1": "PO Box [number]",
+    "city": "Versailles",
+    "state": "KY",
+    "zip": ""
+  },
+  "hours": ["Mon–Fri 9am–5pm", "Saturday by appointment"],
+  "serviceArea": [
+    "Lexington",
+    "Georgetown",
+    "Frankfort",
+    "Versailles",
+    "Paris",
+    "Winchester"
+  ],
+  "social": []
+}
