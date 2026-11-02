@@ -10,7 +10,7 @@ import { defineConfig } from "tinacms";
  * Collections:
  *   - Stones:        one file per memorial in the gallery
  *   - Categories:    the filter tabs and category pages
- *   - About / FAQ / Privacy: one file each in content/pages
+ *   - Home / Request / About / FAQ / Privacy: one file each in content/pages
  *   - Site settings: one file with logo, phone, address, hours, etc.
  */
 
@@ -213,6 +213,90 @@ export default defineConfig({
         ],
       },
       {
+        name: "home",
+        label: "Home page",
+        path: "content/pages",
+        format: "json",
+        match: { include: "home" },
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          {
+            type: "string",
+            name: "heroHeadline",
+            label: "Headline",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "heroEyebrow",
+            label: "Small line above the headline",
+            description:
+              "Leave blank to list the towns from Site settings → Service area automatically.",
+          },
+          {
+            type: "string",
+            name: "heroIntro",
+            label: "Intro text",
+            ui: { component: "textarea" },
+          },
+          {
+            type: "image",
+            name: "heroImage",
+            label: "Banner photo",
+            description: "Wide, calm photo shown behind the headline. At least 2000px wide.",
+          },
+          {
+            type: "string",
+            name: "primaryButton",
+            label: "Main button label",
+            description: "Scrolls down to the gallery. Default: Browse designs",
+          },
+          {
+            type: "string",
+            name: "secondaryButton",
+            label: "Second button label",
+            description: "Goes to the Request information page. Default: Talk with us",
+          },
+          seoField,
+        ],
+      },
+      {
+        name: "request",
+        label: "Request information page",
+        path: "content/pages",
+        format: "json",
+        match: { include: "request" },
+        ui: { allowedActions: { create: false, delete: false } },
+        fields: [
+          { type: "string", name: "title", label: "Headline", isTitle: true, required: true },
+          { type: "string", name: "intro", label: "Intro text", ui: { component: "textarea" } },
+          {
+            type: "string",
+            name: "submitLabel",
+            label: "Send button label",
+            description: "Default: Send request",
+          },
+          { type: "string", name: "nextStepsHeading", label: "Side box heading", description: "Default: What happens next" },
+          {
+            type: "string",
+            name: "nextSteps",
+            label: "What happens next",
+            list: true,
+            description: "Each step in the numbered list beside the form.",
+          },
+          { type: "string", name: "thankYouHeading", label: "Thank-you headline", description: "Default: Thank you" },
+          {
+            type: "string",
+            name: "thankYou",
+            label: "Thank-you message",
+            description: "Shown after someone sends the form.",
+            ui: { component: "textarea" },
+          },
+          seoField,
+        ],
+      },
+      {
         name: "about",
         label: "About page",
         path: "content/pages",
@@ -357,61 +441,6 @@ export default defineConfig({
             label: "Default share image",
             description:
               "Used when a page has no share image of its own (link previews in texts and social media). 1200 × 630.",
-          },
-          {
-            type: "object",
-            name: "home",
-            label: "Home page",
-            fields: [
-              {
-                type: "image",
-                name: "heroImage",
-                label: "Hero photo",
-                description:
-                  "Wide, calm photo shown behind the headline. At least 2000px wide.",
-              },
-              {
-                type: "string",
-                name: "heroEyebrow",
-                label: "Small line above the headline",
-              },
-              { type: "string", name: "heroHeadline", label: "Headline" },
-              {
-                type: "string",
-                name: "heroIntro",
-                label: "Intro text",
-                ui: { component: "textarea" },
-              },
-              seoField,
-            ],
-          },
-          {
-            type: "object",
-            name: "request",
-            label: "Request information page",
-            fields: [
-              {
-                type: "string",
-                name: "intro",
-                label: "Intro text",
-                ui: { component: "textarea" },
-              },
-              {
-                type: "string",
-                name: "nextSteps",
-                label: "What happens next",
-                list: true,
-                description: "Each step in the numbered list beside the form.",
-              },
-              {
-                type: "string",
-                name: "thankYou",
-                label: "Thank-you message",
-                description: "Shown after someone sends the form.",
-                ui: { component: "textarea" },
-              },
-              seoField,
-            ],
           },
           {
             type: "image",
