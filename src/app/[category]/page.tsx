@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import CategoryTabs from "@/components/CategoryTabs";
 import ContactBand from "@/components/ContactBand";
@@ -14,17 +15,18 @@ export async function generateStaticParams() {
   return categories.map((c) => ({ category: c.slug }));
 }
 
-export async function generateMetadata(
-  props: PageProps<"/[category]">,
-): Promise<Metadata> {
+export async function generateMetadata(props: PageProps<"/[category]">): Promise<Metadata> {
   const { category: slug } = await props.params;
   const [categories, settings] = await Promise.all([getCategories(), getSettings()]);
   const category = categories.find((c) => c.slug === slug);
   if (!category) return {};
-  return {
+  return pageMetadata({
+    settings,
+    path: `/${category.slug}/`,
+    seo: category.seo,
     title: `${category.name} in Central Kentucky | ${settings.businessName}`,
-    description: category.intro ?? undefined,
-  };
+    description: category.intro,
+  });
 }
 
 export default async function CategoryPage(props: PageProps<"/[category]">) {

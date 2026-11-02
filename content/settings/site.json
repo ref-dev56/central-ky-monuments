@@ -1,6 +1,7 @@
 {
   "businessName": "Central Kentucky Monuments",
   "logo": "/uploads/logo.png",
+  "shareImage": "/uploads/share-default.jpg",
   "home": {
     "heroImage": "/uploads/hero.jpg",
     "heroEyebrow": "Serving Lexington, Georgetown, Frankfort, Versailles, Paris and Winchester",

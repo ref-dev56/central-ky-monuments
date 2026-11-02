@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { getSettings, telHref } from "@/lib/content";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
-  return {
+  // Only reachable after sending the form, so keep it out of search results.
+  return pageMetadata({
+    settings,
+    path: "/request-information/thank-you/",
     title: `Thank you | ${settings.businessName}`,
-    // Only reachable after sending the form, so keep it out of search results.
-    robots: { index: false, follow: true },
-  };
+    noindex: true,
+  });
 }
 
 export default async function ThankYouPage() {

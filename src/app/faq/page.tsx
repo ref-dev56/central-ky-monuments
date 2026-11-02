@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import ContactBand from "@/components/ContactBand";
 import PageIntro from "@/components/PageIntro";
 import { anchorId, getFaq, getSettings, present } from "@/lib/content";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [faq, settings] = await Promise.all([getFaq(), getSettings()]);
-  return {
+  return pageMetadata({
+    settings,
+    path: "/faq/",
+    seo: faq.seo,
     title: `Frequently asked questions | ${settings.businessName}`,
-    description: faq.intro ?? undefined,
-  };
+    description: faq.intro,
+  });
 }
 
 export default async function FaqPage() {

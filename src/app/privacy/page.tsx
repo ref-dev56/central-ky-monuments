@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import RichText from "@/components/RichText";
 import { anchorId, getPrivacy, getSettings, present, telHref } from "@/lib/content";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [privacy, settings] = await Promise.all([getPrivacy(), getSettings()]);
-  return {
+  return pageMetadata({
+    settings,
+    path: "/privacy/",
+    seo: privacy.seo,
     title: `Privacy policy | ${settings.businessName}`,
-    description: privacy.intro ?? undefined,
-  };
+    description: privacy.intro,
+  });
 }
 
 export default async function PrivacyPage() {

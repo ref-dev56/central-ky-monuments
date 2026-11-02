@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import BackLink from "@/components/BackLink";
 import RequestForm from "@/components/RequestForm";
 import { getGalleryStones, getSettings, telHref } from "@/lib/content";
 
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
-  return {
+  return pageMetadata({
+    settings,
+    path: "/request-information/",
+    seo: settings.request?.seo,
     title: `Request information | ${settings.businessName}`,
     description:
+      settings.request?.intro ||
       "Ask about a memorial design or tell us what you have in mind. No cost and no obligation.",
-  };
+  });
 }
 
 export default async function RequestPage() {
