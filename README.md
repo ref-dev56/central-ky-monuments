@@ -45,7 +45,7 @@ How it fits together:
 
 ## Notes
 
-- Next.js image optimization is disabled (`images.unoptimized`) because a static export has no server; images are resized at build time instead.
+- **Images are resized at build time.** `scripts/optimize-images.mjs` (run by `npm run build`, or `npm run images`) makes WebP copies of every photo in `public/uploads` at the widths in `src/lib/image-sizes.mjs`, into `public/_img` (not committed). A custom `next/image` loader (`src/lib/image-loader.ts`) points each srcset width at its copy. In `npm run dev` the originals are used, so new uploads show immediately. SVGs are used as-is.
 - Cache Components / Partial Prerendering are off because they can't run in a static export.
 - `trailingSlash: true` writes each page as `folder/index.html`, which works on every static host without redirect rules.
 
