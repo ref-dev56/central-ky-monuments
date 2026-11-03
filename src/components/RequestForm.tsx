@@ -51,18 +51,42 @@ const inputClass =
 const labelClass = "text-[15px] font-semibold";
 const optional = <span className="font-normal text-muted">(optional)</span>;
 
-function validate(f: Fields): Errors {
+/** name@domain.ext: no spaces, one @, and a dot followed by at least 2 letters. */
+const EMAIL = /^[^\s@]+@[^\s@.]+(\.[^\s@.]+)*\.[a-z]{2,}$/i;
+
+/**
+ * Keeps only the 10 digits of a US phone number. A leading 1 or 0 is
+ * dropped (no US area code starts with them), so "+1 (859) 555-1234" and
+ * "18595551234" both become 8595551234.
+ */
+function phoneDigits(value: string) {
+  return value.replace(/\D/g, "").replace(/^[01]+/, "").slice(0, 10);
+}
+
+/** 859 → "859", 8595 → "859-5", 8595551234 → "859-555-1234" */
+function formatPhone(digits: string) {
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+  return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
+/** Problems with the phone and email formats (blank is fine here). */
+function formatErrors(f: Fields): Errors {
   const errors: Errors = {};
-  const digits = f.phone.replace(/\D/g, "");
+  if (f.phone && phoneDigits(f.phone).length !== 10)
+    errors.phone = "Please enter a 10-digit phone number, like 859-555-0123.";
+  if (f.email.trim() && !EMAIL.test(f.email.trim()))
+    errors.email = "Please enter an email address like name@example.com.";
+  return errors;
+}
+
+function validate(f: Fields): Errors {
+  const errors: Errors = formatErrors(f);
   if (!f.name.trim()) errors.name = "Please enter your name.";
-  if (f.contactMethod !== "Email" && !f.phone.trim())
+  if (f.contactMethod !== "Email" && !f.phone)
     errors.phone = "Please enter a phone number so we can reach you.";
-  else if (f.phone.trim() && (digits.length < 10 || digits.length > 11))
-    errors.phone = "Please enter a 10-digit phone number.";
   if (f.contactMethod === "Email" && !f.email.trim())
     errors.email = "Please enter an email address so we can reach you.";
-  else if (f.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim()))
-    errors.email = "Please check the email address.";
   return errors;
 }
 
@@ -122,6 +146,28 @@ export default function RequestForm({ stones, phone, phoneHref, submitLabel }: P
     if (key in errors) setErrors((e) => ({ ...e, [key]: undefined }));
   };
 
+  /** Formats the phone as the visitor types (859-555-0123), keeping the cursor in place. */
+  const onPhoneChange = (input: HTMLInputElement) => {
+    const caret = input.selectionStart ?? input.value.length;
+    const digitsBeforeCaret = phoneDigits(input.value.slice(0, caret)).length;
+    const formatted = formatPhone(phoneDigits(input.value));
+    set("phone", formatted);
+    // Put the cursor back after the same number of digits.
+    requestAnimationFrame(() => {
+      let pos = 0;
+      for (let seen = 0; pos < formatted.length && seen < digitsBeforeCaret; pos++) {
+        if (/\d/.test(formatted[pos])) seen++;
+      }
+      if (document.activeElement === input) input.setSelectionRange(pos, pos);
+    });
+  };
+
+  /** Checks a field's format when the visitor moves on from it. */
+  const checkFormat = (key: "phone" | "email") => {
+    const problem = formatErrors(fields)[key];
+    if (problem) setErrors((e) => ({ ...e, [key]: problem }));
+  };
+
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     const found = validate(fields);
@@ -137,7 +183,7 @@ export default function RequestForm({ stones, phone, phoneHref, submitLabel }: P
 
     const { design, name, phone, email, contactMethod, cemetery, timeline, message } = fields;
     const payload = {
-      design, name, phone, email, contactMethod, cemetery, timeline, message,
+      design, name, phone, email: email.trim(), contactMethod, cemetery, timeline, message,
       sku: stone && design.includes(stone.sku) ? stone.sku : "",
       page: window.location.href,
       turnstileToken,
@@ -270,9 +316,12 @@ export default function RequestForm({ stones, phone, phoneHref, submitLabel }: P
           <input
             id="phone"
             type="tel"
-            autoComplete="tel"
+            inputMode="tel"
+            autoComplete="tel-national"
+            placeholder="859-555-0123"
             value={fields.phone}
-            onChange={(e) => set("phone", e.target.value)}
+            onChange={(e) => onPhoneChange(e.target)}
+            onBlur={() => checkFormat("phone")}
             className={inputClass}
             {...errorProps("phone")}
           />
@@ -286,8 +335,10 @@ export default function RequestForm({ stones, phone, phoneHref, submitLabel }: P
             id="email"
             type="email"
             autoComplete="email"
+            placeholder="name@example.com"
             value={fields.email}
             onChange={(e) => set("email", e.target.value)}
+            onBlur={() => checkFormat("email")}
             className={inputClass}
             {...errorProps("email")}
           />
