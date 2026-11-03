@@ -129,13 +129,6 @@ export async function getRequestPage() {
   return data.request;
 }
 
-/** "Lexington, Georgetown and Paris" */
-export function joinTowns(towns: string[]) {
-  return towns.length > 1
-    ? `${towns.slice(0, -1).join(", ")} and ${towns.at(-1)}`
-    : (towns[0] ?? "");
-}
-
 /** The About page (content/pages/about.json). */
 export async function getAbout() {
   const { data } = await client.queries.about({ relativePath: "about.json" });
