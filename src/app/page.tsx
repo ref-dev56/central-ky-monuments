@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Fragment } from "react";
 import CategoryTabs from "@/components/CategoryTabs";
 import ContactBand from "@/components/ContactBand";
 import Gallery from "@/components/Gallery";
@@ -9,7 +10,6 @@ import {
   getGalleryStones,
   getHome,
   getSettings,
-  joinTowns,
   present,
 } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
@@ -33,10 +33,8 @@ export default async function Home() {
     getGalleryStones(),
   ]);
   const towns = present(settings.serviceArea);
-  // Blank in the CMS = build the line from the service area list.
-  const eyebrow =
-    home.heroEyebrow?.trim() ||
-    (towns.length ? `Serving ${joinTowns(towns)}` : "");
+  // Typed text in the CMS wins; blank = list the towns from the service area.
+  const customEyebrow = home.heroEyebrow?.trim();
 
   return (
     <main className="flex flex-1 flex-col">
@@ -54,10 +52,31 @@ export default async function Home() {
         )}
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-ink/55" />
         <div className="mx-auto flex min-h-[420px] max-w-6xl flex-col justify-end gap-4 px-4 pb-12 pt-24 sm:min-h-[540px] sm:px-6 sm:pb-16">
-          {eyebrow && (
-            <p className="text-sm font-medium tracking-wide text-sage-tint">
-              {eyebrow}
-            </p>
+          {customEyebrow ? (
+            <p className="text-sm font-medium tracking-wide text-sage-tint">{customEyebrow}</p>
+          ) : (
+            towns.length > 0 && (
+              <p className="text-sm font-medium tracking-wide text-sage-tint">
+                {/* "Lexington · Georgetown · …"; screen readers hear "Serving Lexington, Georgetown, …" */}
+                <span className="sr-only">Serving </span>
+                {towns.map((town, i) => (
+                  <Fragment key={town}>
+                    {/* Each town stays with its dot; the line wraps between towns */}
+                    <span className="whitespace-nowrap">
+                      {town}
+                      {i < towns.length - 1 && (
+                        <>
+                          <span className="sr-only">,</span>
+                          <span aria-hidden="true" className="ml-2 mr-1 opacity-70">
+                            ·
+                          </span>
+                        </>
+                      )}
+                    </span>{" "}
+                  </Fragment>
+                ))}
+              </p>
+            )
           )}
           <h1 className="max-w-3xl font-serif text-[44px] font-semibold leading-[1.02] text-white sm:text-[64px]">
             {home.heroHeadline || settings.businessName}
