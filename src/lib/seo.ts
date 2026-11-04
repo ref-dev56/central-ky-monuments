@@ -7,6 +7,16 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://centralkym
   "",
 );
 
+/**
+ * Pre-launch switch: set PRELAUNCH_NOINDEX=true in Netlify to keep the whole
+ * site out of search results (e.g. while it's only on the netlify.app address
+ * with placeholder content). Delete the variable and redeploy at launch.
+ */
+export const PRELAUNCH_NOINDEX = process.env.PRELAUNCH_NOINDEX === "true";
+
+/** What every page says to search engines while the pre-launch switch is on. */
+export const PRELAUNCH_ROBOTS = { index: false, follow: false } as const;
+
 /** The "Search & sharing" fields from the CMS (all optional). */
 export type SeoFields = {
   title?: string | null;
@@ -48,7 +58,11 @@ export function pageMetadata({ settings, path, seo, title, description, noindex 
     title: { absolute: finalTitle },
     description: finalDescription,
     alternates: { canonical: path },
-    robots: noindex ? { index: false, follow: true } : undefined,
+    robots: PRELAUNCH_NOINDEX
+      ? PRELAUNCH_ROBOTS
+      : noindex
+        ? { index: false, follow: true }
+        : undefined,
     openGraph: {
       type: "website",
       locale: "en_US",
