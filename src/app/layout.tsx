@@ -8,7 +8,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import BusinessJsonLd from "@/components/BusinessJsonLd";
 import { getHome, getSettings, readImageSize, telHref } from "@/lib/content";
-import { SITE_URL } from "@/lib/seo";
+import { PRELAUNCH_NOINDEX, PRELAUNCH_ROBOTS, SITE_URL } from "@/lib/seo";
 
 // Site-wide defaults; each page sets its own title, description and preview.
 export async function generateMetadata(): Promise<Metadata> {
@@ -17,6 +17,8 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(SITE_URL),
     title: settings.businessName,
     applicationName: settings.businessName,
+    // Covers pages without their own metadata, like the 404 page.
+    robots: PRELAUNCH_NOINDEX ? PRELAUNCH_ROBOTS : undefined,
   };
 }
 
