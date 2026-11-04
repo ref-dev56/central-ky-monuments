@@ -14,6 +14,13 @@ import {
 } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 
+/** Which part of the banner photo stays in view when the screen is narrow. */
+const HERO_FOCUS: Record<string, string> = {
+  left: "object-[25%_60%]",
+  center: "object-[center_60%]",
+  right: "object-[75%_60%]",
+};
+
 export async function generateMetadata(): Promise<Metadata> {
   const [settings, home] = await Promise.all([getSettings(), getHome()]);
   return pageMetadata({
@@ -47,7 +54,7 @@ export default async function Home() {
             fill
             preload
             sizes="100vw"
-            className="-z-10 object-cover object-[center_60%]"
+            className={`-z-10 object-cover ${HERO_FOCUS[home.heroFocus ?? "center"] ?? HERO_FOCUS.center}`}
           />
         )}
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-ink/55" />

@@ -248,6 +248,18 @@ export default defineConfig({
           },
           {
             type: "string",
+            name: "heroFocus",
+            label: "Banner photo: part to keep on phones",
+            description:
+              "Phones show a narrow slice of the photo. Pick the side the main subject is on.",
+            options: [
+              { value: "left", label: "Left" },
+              { value: "center", label: "Center" },
+              { value: "right", label: "Right" },
+            ],
+          },
+          {
+            type: "string",
             name: "primaryButton",
             label: "Main button label",
             description: "Scrolls down to the gallery. Default: Browse designs",
