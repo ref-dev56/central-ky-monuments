@@ -232,7 +232,7 @@ export default defineConfig({
             name: "heroEyebrow",
             label: "Small line above the headline",
             description:
-              "Leave blank to list the towns from Site settings → Service area automatically.",
+              "Leave blank to list the towns from Site settings → Service area automatically (Lexington · Georgetown · …).",
           },
           {
             type: "string",
