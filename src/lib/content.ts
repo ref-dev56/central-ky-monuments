@@ -108,7 +108,7 @@ export async function getGalleryStones(categorySlug?: string) {
   return mixed;
 }
 
-/** "(859) 555-0142" -> "tel:+18595550142" */
+/** "(859) 873-3322" -> "tel:+18598733322" */
 export function telHref(phone?: string | null) {
   const digits = (phone ?? "").replace(/\D/g, "");
   if (!digits) return undefined;
