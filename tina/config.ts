@@ -10,6 +10,7 @@ import { defineConfig } from "tinacms";
  * Collections:
  *   - Stones:        one file per memorial in the gallery
  *   - Categories:    the filter tabs and category pages
+ *   - Granite colors: the swatches offered for every design
  *   - Home / Request / About / FAQ / Privacy: one file each in content/pages
  *   - Site settings: one file with logo, phone, address, hours, etc.
  */
@@ -138,13 +139,6 @@ export default defineConfig({
           },
           {
             type: "string",
-            name: "materials",
-            label: "Available materials",
-            description: "Add each material with the + button, e.g. Gray granite",
-            list: true,
-          },
-          {
-            type: "string",
             name: "sizes",
             label: "Available sizes",
             description: 'Add each size with the + button, e.g. 24" × 30" × 6"',
@@ -210,6 +204,44 @@ export default defineConfig({
             ui: { component: "textarea" },
           },
           seoField,
+        ],
+      },
+      {
+        name: "color",
+        label: "Granite colors",
+        path: "content/colors",
+        format: "json",
+        ui: {
+          filename: {
+            readonly: true,
+            slugify: (values) => slugify(values?.name),
+          },
+        },
+        fields: [
+          { type: "string", name: "name", label: "Color name", isTitle: true, required: true },
+          {
+            type: "string",
+            name: "group",
+            label: "Group",
+            required: true,
+            options: [
+              { value: "stock", label: "Stock color" },
+              { value: "special", label: "Special order" },
+            ],
+          },
+          {
+            type: "number",
+            name: "order",
+            label: "Order",
+            description: "Position within its group (1 = first).",
+          },
+          {
+            type: "image",
+            name: "image",
+            label: "Swatch photo",
+            description: "A close-up of the polished granite. Shown at about 200 × 120.",
+            required: true,
+          },
         ],
       },
       {
@@ -490,6 +522,26 @@ export default defineConfig({
             name: "serviceArea",
             label: "Service area (towns and counties)",
             list: true,
+          },
+          {
+            type: "object",
+            name: "colors",
+            label: "Granite colors panel",
+            fields: [
+              {
+                type: "string",
+                name: "intro",
+                label: "Intro text",
+                ui: { component: "textarea" },
+              },
+              {
+                type: "string",
+                name: "specialOrderNote",
+                label: "Special-order note",
+                description:
+                  "Optional line under the Special order heading, e.g. lead time or pricing. Leave blank to show none.",
+              },
+            ],
           },
           {
             type: "object",

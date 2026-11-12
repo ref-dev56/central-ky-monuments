@@ -3,12 +3,6 @@
   "sku": "CKM-009",
   "category": "content/categories/hearts-companion.json",
   "description": "A beautifully sculpted heart-shaped memorial symbolizing enduring love and cherished memories. Its polished granite surface offers a personal and heartfelt tribute.",
-  "materials": [
-    "Black granite",
-    "Rose granite",
-    "Gray granite",
-    "Blue Pearl granite"
-  ],
   "sizes": [
     "24\" × 24\" × 6\""
   ],

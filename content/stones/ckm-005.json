@@ -3,12 +3,6 @@
   "sku": "CKM-005",
   "category": "content/categories/upright-headstones.json",
   "description": "A thoughtfully designed memorial featuring an asymmetrical curved profile and elegant proportions. Its distinctive shape provides a beautiful canvas for a personalized tribute.",
-  "materials": [
-    "Rose granite",
-    "Black granite",
-    "Gray granite",
-    "Blue Pearl granite"
-  ],
   "sizes": [
     "24\" × 30\" × 6\""
   ],

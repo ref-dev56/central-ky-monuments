@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import BackLink from "@/components/BackLink";
 import RequestForm from "@/components/RequestForm";
 import {
+  getColors,
   getGalleryStones,
   getRequestPage,
   getSettings,
@@ -23,10 +24,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function RequestPage() {
-  const [settings, copy, stones] = await Promise.all([
+  const [settings, copy, stones, colors] = await Promise.all([
     getSettings(),
     getRequestPage(),
     getGalleryStones(),
+    getColors(),
   ]);
   const phoneHref = telHref(settings.phone);
   const steps = (copy.nextSteps ?? []).filter((s): s is string => !!s);
@@ -51,6 +53,11 @@ export default async function RequestPage() {
           phone={settings.phone}
           phoneHref={phoneHref}
           submitLabel={copy.submitLabel}
+          colorOptions={{
+            colors,
+            intro: settings.colors?.intro,
+            specialNote: settings.colors?.specialOrderNote,
+          }}
         />
       </div>
 

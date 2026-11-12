@@ -3,11 +3,6 @@
   "sku": "CKM-002",
   "category": "content/categories/upright-headstones.json",
   "description": "An elegant upright monument with a polished face and gracefully curved top. Its refined appearance creates a dignified tribute suitable for traditional or contemporary memorial designs.",
-  "materials": [
-    "Black granite",
-    "Gray granite",
-    "Blue Pearl granite"
-  ],
   "sizes": [
     "24\" × 30\" × 6\""
   ],

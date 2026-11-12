@@ -29,9 +29,10 @@ The schema lives in `tina/config.ts`. Content is plain JSON in `content/`, and i
 
 | Collection | Folder | What it holds |
 | --- | --- | --- |
-| Stones | `content/stones/` | One file per memorial: name, SKU, category, description, materials, sizes, image, alt text |
+| Stones | `content/stones/` | One file per memorial: name, SKU, category, description, sizes, image, alt text |
 | Categories | `content/categories/` | Tab name, URL slug, sort order, intro text |
-| Site settings | `content/settings/site.json` | Business name, logos, phone, public email, mailing address, hours, service area, social links |
+| Granite colors | `content/colors/` | One file per color offered for every design: name, group (stock or special order), order, swatch photo. Shown in the lightbox's "View colors" panel and the request form; the pick is sent with the lead |
+| Site settings | `content/settings/site.json` | Business name, logos, phone, public email, mailing address, hours, service area, colors panel intro and special-order note, social links |
 
 How it fits together:
 

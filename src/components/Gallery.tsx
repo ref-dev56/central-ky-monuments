@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { GalleryStone } from "@/lib/content";
+import type { ColorOptions } from "./ColorGrid";
 import Lightbox from "./Lightbox";
 
 type Props = {
@@ -10,6 +11,8 @@ type Props = {
   businessName: string;
   /** Screen-reader heading for the gallery, e.g. "All designs". */
   label: string;
+  /** Granite colors offered for every design. */
+  colorOptions: ColorOptions;
 };
 
 const COLUMNS = 3;
@@ -47,8 +50,15 @@ function setStoneParam(sku: string | null) {
  * - Opening a stone sets ?stone=SKU so the address bar is always a
  *   shareable link; visiting such a link opens that stone on load.
  */
-export default function Gallery({ stones, businessName, label }: Props) {
+export default function Gallery({
+  stones,
+  businessName,
+  label,
+  colorOptions,
+}: Props) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  // The color a visitor picks stays chosen as they browse other designs.
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [shareUrl, setShareUrl] = useState("");
   const lastTile = useRef<HTMLButtonElement | null>(null);
 
@@ -65,7 +75,9 @@ export default function Gallery({ stones, businessName, label }: Props) {
   useEffect(() => {
     const sku = new URLSearchParams(window.location.search).get("stone");
     if (!sku) return;
-    const index = stones.findIndex((s) => s.sku.toLowerCase() === sku.toLowerCase());
+    const index = stones.findIndex(
+      (s) => s.sku.toLowerCase() === sku.toLowerCase(),
+    );
     // Opening from a link is a deliberate, one-time sync with the URL.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     if (index >= 0) open(index);
@@ -122,6 +134,9 @@ export default function Gallery({ stones, businessName, label }: Props) {
           onClose={close}
           onPrev={() => step(-1)}
           onNext={() => step(1)}
+          colorOptions={colorOptions}
+          selectedColor={selectedColor}
+          onSelectColor={setSelectedColor}
         />
       )}
     </section>

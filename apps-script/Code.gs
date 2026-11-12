@@ -17,10 +17,12 @@
 const LEADS_SHEET = 'Leads';
 const SETTINGS_SHEET = 'Settings';
 const LEAD_COLUMNS = [
-  'Received', 'Name', 'Phone', 'Email', 'Best way to reach', 'Design',
+  'Received', 'Name', 'Phone', 'Email', 'Best way to reach', 'Design', 'Granite color',
   'SKU', 'Cemetery', 'Timeline', 'Message', 'Page', 'Status', 'Notes', 'Emailed',
 ];
-const EMAILED_COL = LEAD_COLUMNS.indexOf('Emailed') + 1;
+/** 1-based column number of a heading, e.g. col_('Emailed'). */
+function col_(name) { return LEAD_COLUMNS.indexOf(name) + 1; }
+const EMAILED_COL = col_('Emailed');
 
 /** Creates the Leads and Settings tabs and the email timer. Safe to run again. */
 function setup() {
@@ -28,13 +30,20 @@ function setup() {
 
   let leads = ss.getSheetByName(LEADS_SHEET);
   if (!leads) leads = ss.insertSheet(LEADS_SHEET, 0);
-  const hadEmailedColumn = leads.getLastRow() > 0 &&
-    leads.getRange(1, EMAILED_COL).getValues()[0][0] === 'Emailed';
+  const header = leads.getLastRow() > 0
+    ? leads.getRange(1, 1, 1, leads.getLastColumn()).getValues()[0].map(String)
+    : [];
+  // Upgrading from an earlier version: add the Granite color column right
+  // after Design, so existing rows shift along with their headings.
+  if (header.length && header.indexOf('Granite color') === -1 && header.indexOf('Design') !== -1) {
+    leads.insertColumnAfter(header.indexOf('Design') + 1);
+  }
+  const hadEmailedColumn = header.indexOf('Emailed') !== -1;
   leads.getRange(1, 1, 1, LEAD_COLUMNS.length).setValues([LEAD_COLUMNS]).setFontWeight('bold');
   leads.setFrozenRows(1);
-  leads.getRange('A:A').setNumberFormat('m/d/yyyy h:mm am/pm');
-  leads.getRange('J:J').setWrap(true);
-  leads.setColumnWidth(10, 320);
+  leads.getRange(1, col_('Received'), leads.getMaxRows(), 1).setNumberFormat('m/d/yyyy h:mm am/pm');
+  leads.getRange(1, col_('Message'), leads.getMaxRows(), 1).setWrap(true);
+  leads.setColumnWidth(col_('Message'), 320);
   leads.getRange(1, EMAILED_COL, leads.getMaxRows(), 1).setNumberFormat('m/d/yyyy h:mm am/pm');
   // Upgrading from the first version: those rows were already emailed.
   const last = leads.getLastRow();
@@ -81,6 +90,7 @@ function doPost(e) {
       email: clean_(data.email, 200),
       contactMethod: clean_(data.contactMethod, 40),
       design: clean_(data.design, 200),
+      color: clean_(data.color, 80),
       sku: clean_(data.sku, 40),
       cemetery: clean_(data.cemetery, 200),
       timeline: clean_(data.timeline, 80),
@@ -116,9 +126,11 @@ function sendPendingEmails() {
     const rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, LEAD_COLUMNS.length).getValues();
     rows.forEach(function (r, i) {
       if (r[EMAILED_COL - 1] !== '' || !r[1]) return;
+      const v = function (name) { return r[col_(name) - 1]; };
       const lead = {
-        name: r[1], phone: r[2], email: r[3], contactMethod: r[4], design: r[5],
-        sku: r[6], cemetery: r[7], timeline: r[8], message: r[9], page: r[10],
+        name: v('Name'), phone: v('Phone'), email: v('Email'), contactMethod: v('Best way to reach'),
+        design: v('Design'), color: v('Granite color'), sku: v('SKU'), cemetery: v('Cemetery'),
+        timeline: v('Timeline'), message: v('Message'), page: v('Page'),
       };
       let result;
       try {
@@ -142,7 +154,7 @@ function sendPendingEmails() {
 function sendTestLead() {
   const lead = {
     name: 'Test Person', phone: '(859) 555-0100', email: '', contactMethod: 'Phone call',
-    design: 'Eternal Heart – CKM-009', sku: 'CKM-009', cemetery: 'Test Cemetery',
+    design: 'Eternal Heart – CKM-009', color: 'Imperial Black', sku: 'CKM-009', cemetery: 'Test Cemetery',
     timeline: 'Just exploring for now', message: 'This is a test from the Apps Script editor.',
     page: 'apps-script test',
   };
@@ -170,7 +182,7 @@ function saveLead_(lead, status) {
   lock.waitLock(20000);
   try {
     sheet.appendRow([
-      new Date(), lead.name, lead.phone, lead.email, lead.contactMethod, lead.design,
+      new Date(), lead.name, lead.phone, lead.email, lead.contactMethod, lead.design, lead.color,
       lead.sku, lead.cemetery, lead.timeline, lead.message, lead.page, status || 'New', '', '',
     ].map(cell_));
   } finally {
@@ -190,6 +202,7 @@ function notify_(lead) {
     ['Phone', lead.phone],
     ['Email', lead.email],
     ['Design', lead.design],
+    ['Granite color', lead.color],
     ['Cemetery', lead.cemetery],
     ['Timeline', lead.timeline],
     ['Message', lead.message],
