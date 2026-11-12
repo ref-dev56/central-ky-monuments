@@ -5,7 +5,12 @@ import CategoryTabs from "@/components/CategoryTabs";
 import ContactBand from "@/components/ContactBand";
 import Gallery from "@/components/Gallery";
 import PageIntro from "@/components/PageIntro";
-import { getCategories, getGalleryStones, getSettings } from "@/lib/content";
+import {
+  getCategories,
+  getColors,
+  getGalleryStones,
+  getSettings,
+} from "@/lib/content";
 
 // Only the categories in the CMS get pages; anything else is a 404.
 export const dynamicParams = false;
@@ -15,9 +20,14 @@ export async function generateStaticParams() {
   return categories.map((c) => ({ category: c.slug }));
 }
 
-export async function generateMetadata(props: PageProps<"/[category]">): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps<"/[category]">,
+): Promise<Metadata> {
   const { category: slug } = await props.params;
-  const [categories, settings] = await Promise.all([getCategories(), getSettings()]);
+  const [categories, settings] = await Promise.all([
+    getCategories(),
+    getSettings(),
+  ]);
   const category = categories.find((c) => c.slug === slug);
   if (!category) return {};
   return pageMetadata({
@@ -31,10 +41,11 @@ export async function generateMetadata(props: PageProps<"/[category]">): Promise
 
 export default async function CategoryPage(props: PageProps<"/[category]">) {
   const { category: slug } = await props.params;
-  const [settings, categories, stones] = await Promise.all([
+  const [settings, categories, stones, colors] = await Promise.all([
     getSettings(),
     getCategories(),
     getGalleryStones(slug),
+    getColors(),
   ]);
   const category = categories.find((c) => c.slug === slug);
   if (!category) notFound();
@@ -46,7 +57,16 @@ export default async function CategoryPage(props: PageProps<"/[category]">) {
       <div className="mx-auto w-full max-w-6xl px-4 pb-16 pt-6 sm:px-6 sm:pt-8">
         <CategoryTabs categories={categories} active={category.slug} />
         <div className="pt-8">
-          <Gallery stones={stones} businessName={settings.businessName} label={category.name} />
+          <Gallery
+            stones={stones}
+            businessName={settings.businessName}
+            label={category.name}
+            colorOptions={{
+              colors,
+              intro: settings.colors?.intro,
+              specialNote: settings.colors?.specialOrderNote,
+            }}
+          />
         </div>
       </div>
 

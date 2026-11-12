@@ -3,11 +3,6 @@
   "sku": "CKM-006",
   "category": "content/categories/upright-headstones.json",
   "description": "A traditional upright headstone with a textured granite finish and softly shaped top. Its natural appearance offers understated beauty and lasting character.",
-  "materials": [
-    "Gray granite",
-    "Dark Gray granite",
-    "Rose granite"
-  ],
   "sizes": [
     "24\" × 30\" × 6\""
   ],
