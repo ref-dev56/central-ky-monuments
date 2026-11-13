@@ -121,7 +121,7 @@ export default function Lightbox({
           <ChevronLeftIcon className="size-6" />
         </button>
 
-        <div className="flex h-full w-full flex-col overflow-hidden bg-card sm:h-auto sm:max-h-[calc(100dvh-48px)] sm:max-w-5xl sm:flex-row sm:rounded-xl">
+        <div className="flex h-full w-full flex-col overflow-hidden bg-card sm:h-[min(620px,calc(100dvh-48px))] sm:max-w-5xl sm:flex-row sm:rounded-xl">
           {/* Phone top bar */}
           <div className="flex h-14 shrink-0 items-center justify-between border-b border-border px-1.5 sm:hidden">
             <button
@@ -162,8 +162,9 @@ export default function Lightbox({
           </div>
 
           <div className="min-h-0 flex-1 overflow-y-auto pb-24 sm:flex sm:overflow-hidden sm:pb-0">
-            {/* Photo, shown at its own shape */}
-            <div className="flex items-center justify-center bg-stone p-6 sm:min-h-[460px] sm:flex-[1_1_55%]">
+            {/* Photo, shown at its own shape in a fixed-size box, so the modal
+                doesn't change size from stone to stone */}
+            <div className="flex h-[44dvh] items-center justify-center bg-stone p-6 sm:h-auto sm:flex-[1_1_45%] xl:flex-[1_1_55%]">
               <Image
                 key={stone.sku}
                 src={stone.image}
@@ -174,12 +175,12 @@ export default function Lightbox({
                 loading="eager"
                 // Shown at its own size at most, never enlarged.
                 style={{ maxWidth: stone.width }}
-                className="h-auto max-h-[44vh] w-full object-contain sm:max-h-[min(672px,calc(100dvh-96px))]"
+                className="h-auto max-h-[calc(44dvh-48px)] w-full object-contain sm:max-h-[min(572px,calc(100dvh-96px))]"
               />
             </div>
 
             {/* Details (the colors panel covers this column on desktop) */}
-            <div className="sm:relative sm:flex sm:min-h-0 sm:flex-[1_1_45%]">
+            <div className="sm:relative sm:flex sm:min-h-0 sm:flex-[1_1_55%] xl:flex-[1_1_45%]">
               <div className="flex flex-col gap-4 p-5 sm:min-w-0 sm:flex-1 sm:overflow-y-auto sm:p-9">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex flex-col gap-1.5">

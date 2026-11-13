@@ -16,28 +16,49 @@ type Props = {
 };
 
 const COLUMNS = 3;
-/** Approximate tile width on desktop (px), used to balance the columns. */
-const TILE_WIDTH = 370;
-const TILE_PADDING = 32;
+/** Column width on a full-width desktop (px); measured in the browser after load. */
+const DEFAULT_COLUMN_WIDTH = 357;
+const TILE_PADDING = 32; // p-4 on each tile
+const GAP = 16; // gap-4 between tiles and columns
+
+/** Height a stone's tile takes up in a column of the given width. */
+function tileHeight(stone: GalleryStone, columnWidth: number) {
+  // Images are never shown wider than their own pixels, so a small image
+  // makes a shorter tile than its shape alone suggests.
+  const shown = Math.min(stone.width, columnWidth - TILE_PADDING);
+  return (shown * stone.height) / stone.width + TILE_PADDING + GAP;
+}
 
 /**
  * Splits stones into columns, always adding the next photo to the shortest
- * column (by photo height relative to width). This is what gives the
- * Pinterest-style stagger while keeping the column bottoms even.
+ * column. That gives the Pinterest-style stagger. A final pass then moves
+ * the last tile of the tallest column to the shortest one whenever that
+ * makes the column bottoms more even.
  */
-function toColumns(stones: GalleryStone[]) {
+function toColumns(stones: GalleryStone[], columnWidth: number) {
   const columns = Array.from({ length: COLUMNS }, () => ({
     height: 0,
-    items: [] as { stone: GalleryStone; index: number }[],
+    items: [] as { stone: GalleryStone; index: number; h: number }[],
   }));
+  const shortest = () => columns.reduce((a, b) => (b.height < a.height ? b : a));
+  const tallest = () => columns.reduce((a, b) => (b.height > a.height ? b : a));
   stones.forEach((stone, index) => {
-    const shortest = columns.reduce((a, b) => (b.height < a.height ? b : a));
-    shortest.items.push({ stone, index });
-    // Images are never shown wider than their own pixel width, so a small
-    // image makes a shorter tile than its shape alone suggests.
-    const shown = Math.min(stone.width, TILE_WIDTH - TILE_PADDING);
-    shortest.height += (shown * stone.height) / stone.width + TILE_PADDING + 16; // + gap
+    const col = shortest();
+    const h = tileHeight(stone, columnWidth);
+    col.items.push({ stone, index, h });
+    col.height += h;
   });
+  for (let i = 0; i < stones.length; i++) {
+    const tall = tallest();
+    const short = shortest();
+    const last = tall.items.at(-1);
+    // Moving it only helps if the tile is shorter than the difference.
+    if (!last || last.h >= tall.height - short.height) break;
+    tall.items.pop();
+    tall.height -= last.h;
+    short.items.push(last);
+    short.height += last.h;
+  }
   return columns;
 }
 
@@ -67,6 +88,20 @@ export default function Gallery({
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [shareUrl, setShareUrl] = useState("");
   const lastTile = useRef<HTMLButtonElement | null>(null);
+  // Balance the columns for the width they really have on this screen.
+  const grid = useRef<HTMLDivElement>(null);
+  const [columnWidth, setColumnWidth] = useState(DEFAULT_COLUMN_WIDTH);
+  useEffect(() => {
+    const el = grid.current;
+    if (!el) return;
+    const observer = new ResizeObserver(([entry]) => {
+      const width = (entry.contentRect.width - GAP * (COLUMNS - 1)) / COLUMNS;
+      // Round to 4px so small resizes don't reshuffle the tiles.
+      if (width > 0) setColumnWidth(Math.round(width / 4) * 4);
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const open = useCallback(
     (index: number) => {
@@ -101,8 +136,8 @@ export default function Gallery({
 
   return (
     <section aria-label={label}>
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-        {toColumns(stones).map((column, c) => (
+      <div ref={grid} className="flex flex-col gap-4 sm:flex-row sm:items-start">
+        {toColumns(stones, columnWidth).map((column, c) => (
           <div key={c} className="flex min-w-0 flex-1 flex-col gap-4">
             {column.items.map(({ stone, index }) => (
               <button

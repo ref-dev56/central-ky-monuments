@@ -68,7 +68,7 @@ export default async function Home() {
           ) : (
             towns.length > 0 && (
               <p className="text-sm font-medium tracking-wide text-sage-tint">
-                {/* "Lexington · Georgetown · …"; screen readers hear "Serving Lexington, Georgetown, …" */}
+                {/* "Frankfort · Lexington · …"; screen readers hear "Serving Frankfort, Lexington, …" */}
                 <span className="sr-only">Serving </span>
                 {towns.map((town, i) => (
                   <Fragment key={town}>
