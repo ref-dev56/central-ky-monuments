@@ -121,7 +121,7 @@ export default function Lightbox({
           <ChevronLeftIcon className="size-6" />
         </button>
 
-        <div className="flex h-full w-full flex-col overflow-hidden bg-card sm:h-[min(720px,calc(100dvh-48px))] sm:max-w-5xl sm:flex-row sm:rounded-xl">
+        <div className="flex h-full w-full flex-col overflow-hidden bg-card sm:h-[min(560px,calc(100dvh-48px))] sm:max-w-5xl sm:flex-row sm:rounded-xl">
           {/* Phone top bar */}
           <div className="flex h-14 shrink-0 items-center justify-between border-b border-border px-1.5 sm:hidden">
             <button
@@ -175,7 +175,7 @@ export default function Lightbox({
                 loading="eager"
                 // Shown at its own size at most, never enlarged.
                 style={{ maxWidth: stone.width }}
-                className="h-auto max-h-[calc(44dvh-48px)] w-full object-contain sm:max-h-[min(672px,calc(100dvh-96px))]"
+                className="h-auto max-h-[calc(44dvh-48px)] w-full object-contain sm:max-h-[min(512px,calc(100dvh-96px))]"
               />
             </div>
 
