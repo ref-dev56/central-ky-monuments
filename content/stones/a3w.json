@@ -1,0 +1,14 @@
+{
+  "name": "Angled 3 Wing",
+  "sku": "A3W",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Winged uprights",
+  "description": "",
+  "sizes": [
+    "Wings (2): 18\"wx8\"dx20\"h (P5)",
+    "Die: 18\"wx8\"dx22\"h (P5)",
+    "Base: 72\"wx12\"dx6\"h (P1) w/6\" Chamfer"
+  ],
+  "image": "/uploads/stones/A3W.png",
+  "imageAlt": "Angled 3 Wing, upright headstone"
+}

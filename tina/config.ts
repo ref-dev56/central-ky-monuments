@@ -97,7 +97,7 @@ export default defineConfig({
         path: "content/stones",
         format: "json",
         ui: {
-          // Name each file after its SKU, e.g. content/stones/ckm-002.json
+          // Name each file after its SKU, e.g. content/stones/mc-1.json
           filename: {
             readonly: true,
             slugify: (values) => slugify(values?.sku),
@@ -116,7 +116,7 @@ export default defineConfig({
             name: "sku",
             label: "SKU",
             description:
-              "Unique ID, e.g. CKM-002. Used in shareable links (?stone=CKM-002), so avoid changing it after launch.",
+              "Unique ID, e.g. MC-1. Used in shareable links (?stone=MC-1), so avoid changing it after launch.",
             required: true,
           },
           {
@@ -133,6 +133,13 @@ export default defineConfig({
           },
           {
             type: "string",
+            name: "series",
+            label: "Catalog series",
+            description:
+              "Optional. The supplier catalog's section, e.g. Specialty uprights. Shown above the name in the lightbox; leave blank to show the category.",
+          },
+          {
+            type: "string",
             name: "description",
             label: "Description",
             ui: { component: "textarea" },
@@ -140,8 +147,8 @@ export default defineConfig({
           {
             type: "string",
             name: "sizes",
-            label: "Available sizes",
-            description: 'Add each size with the + button, e.g. 24" × 30" × 6"',
+            label: "Size",
+            description: 'One line per part, with the + button, e.g. Die: 36"wx8"dx25"h, then Base: 48"wx14"dx8"h',
             list: true,
           },
           {
@@ -149,7 +156,7 @@ export default defineConfig({
             name: "image",
             label: "Image",
             description:
-              "One photo per stone. Upload at about 1600px on the short side.",
+              "One image per stone. It's shown at its own size, never enlarged, so larger images look sharper.",
             required: true,
           },
           {

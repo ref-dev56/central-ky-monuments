@@ -1,0 +1,13 @@
+{
+  "name": "Temple Series - TS-9",
+  "sku": "TS-9",
+  "category": "content/categories/monuments-crosses.json",
+  "series": "Temple series",
+  "description": "",
+  "sizes": [
+    "Die: 72\"wx12\"dx36\"h (P5)",
+    "Base: 78\"wx16\"dx10\"h (P1) w/2\" Pol Margin"
+  ],
+  "image": "/uploads/stones/TS-9.png",
+  "imageAlt": "Temple series design TS-9, monument"
+}

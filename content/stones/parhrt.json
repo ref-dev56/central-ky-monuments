@@ -1,0 +1,13 @@
+{
+  "name": "Paradiso Heart",
+  "sku": "PARHRT",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Specialty uprights",
+  "description": "",
+  "sizes": [
+    "Die: 36\"wx8\"dx30\"h (P5)",
+    "Base: 36\"wx14\"dx8\"h (P1) w/6\" Chamfer"
+  ],
+  "image": "/uploads/stones/PARHRT.png",
+  "imageAlt": "Paradiso Heart, upright headstone"
+}

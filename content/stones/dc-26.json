@@ -1,0 +1,13 @@
+{
+  "name": "Specialty Uprights - DC-26",
+  "sku": "DC-26",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Specialty uprights",
+  "description": "",
+  "sizes": [
+    "Die: 30\"wx12\"dx36\"h (P2)",
+    "Base: 42\"wx16\"dx6\"h (P1)"
+  ],
+  "image": "/uploads/stones/DC-26.png",
+  "imageAlt": "Specialty uprights design DC-26, upright headstone"
+}

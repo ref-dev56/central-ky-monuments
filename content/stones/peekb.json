@@ -1,0 +1,13 @@
+{
+  "name": "Peek A Bear",
+  "sku": "PEEKB",
+  "category": "content/categories/junior-markers.json",
+  "series": "Junior markers",
+  "description": "",
+  "sizes": [
+    "Die: 18\"wx6\"dx24\"h (P5)",
+    "Base: 36\"wx14\"dx8\"h (P1) w/2\" Pol Margin"
+  ],
+  "image": "/uploads/stones/PEEKB.png",
+  "imageAlt": "Peek A Bear, junior marker"
+}

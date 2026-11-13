@@ -1,0 +1,13 @@
+{
+  "name": "3 Cube",
+  "sku": "3-CUBE",
+  "category": "content/categories/junior-markers.json",
+  "series": "Junior markers",
+  "description": "",
+  "sizes": [
+    "Die (3): 11\"wx11\"dx11\"h (P5)",
+    "Base: 36\"wx16\"dx6\"h (P1) w/2\" Pol Margin"
+  ],
+  "image": "/uploads/stones/3-CUBE.png",
+  "imageAlt": "3 Cube, junior marker"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Rockside Bench",
+  "sku": "ROCKSIDE-BENCH",
+  "category": "content/categories/benches.json",
+  "series": "Benches",
+  "description": "",
+  "sizes": [
+    "Die: 34\"wx10\"dx30\"h (BRP)",
+    "Bench: 34\"wx14\"dx4\"h (P5)",
+    "Pedestal: 26\"wx8\"dx14\"h (P5)",
+    "w/ (2) 6\"dia.x9\"h core holes"
+  ],
+  "image": "/uploads/stones/ROCKSIDE-BENCH.png",
+  "imageAlt": "Rockside Bench, memorial bench"
+}

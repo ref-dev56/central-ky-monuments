@@ -1,0 +1,13 @@
+{
+  "name": "Angel Heart",
+  "sku": "ANGHRT",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Specialty uprights",
+  "description": "",
+  "sizes": [
+    "Die: 32\"wx8\"dx36\"h (P5)",
+    "Base: 40\"wx14\"dx8\"h (P5)"
+  ],
+  "image": "/uploads/stones/ANGHRT.png",
+  "imageAlt": "Angel Heart, upright headstone"
+}

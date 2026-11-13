@@ -1,0 +1,13 @@
+{
+  "name": "Saddle Bench",
+  "sku": "DC-18",
+  "category": "content/categories/benches.json",
+  "series": "Benches",
+  "description": "",
+  "sizes": [
+    "Die: 62\"wx10\"dx47\"h (P5)",
+    "Base: 84\"wx14\"dx11\"h (P1)"
+  ],
+  "image": "/uploads/stones/DC-18.png",
+  "imageAlt": "Saddle Bench, memorial bench"
+}

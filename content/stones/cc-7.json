@@ -1,0 +1,14 @@
+{
+  "name": "Christian Cross Series - CC-7",
+  "sku": "CC-7",
+  "category": "content/categories/monuments-crosses.json",
+  "series": "Christian cross series",
+  "description": "",
+  "sizes": [
+    "Die: 24\"wx7\"dx30\"h (P5)",
+    "Sub-Base: 32\"wx10\"dx4\"h (P5)",
+    "Base: 36\"wx12\"dx6\"h (P5)"
+  ],
+  "image": "/uploads/stones/CC-7.png",
+  "imageAlt": "Christian cross series design CC-7, monument"
+}

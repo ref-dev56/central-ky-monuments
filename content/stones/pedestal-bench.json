@@ -1,0 +1,13 @@
+{
+  "name": "Pedestal Bench",
+  "sku": "PEDESTAL-BENCH",
+  "category": "content/categories/benches.json",
+  "series": "Benches",
+  "description": "",
+  "sizes": [
+    "Bench: 48\"wx14\"dx4\"h (P5)",
+    "Base: 42\"wx8\"dx14\"h (P2)"
+  ],
+  "image": "/uploads/stones/PEDESTAL-BENCH.png",
+  "imageAlt": "Pedestal Bench, memorial bench"
+}

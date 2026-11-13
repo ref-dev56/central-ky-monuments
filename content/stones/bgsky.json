@@ -1,0 +1,13 @@
+{
+  "name": "Big Sky Saddle",
+  "sku": "BGSKY",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Specialty uprights",
+  "description": "",
+  "sizes": [
+    "Die: 48\"wx10\"dx24\"h (P5)",
+    "Base: 72\"wx14\"dx8\"h (P1) w/2\" Pol Margin, 4\" Chamfer"
+  ],
+  "image": "/uploads/stones/BGSKY.png",
+  "imageAlt": "Big Sky Saddle, upright headstone"
+}

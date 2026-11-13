@@ -1,0 +1,15 @@
+{
+  "name": "Benches - DC-20",
+  "sku": "DC-20",
+  "category": "content/categories/benches.json",
+  "series": "Benches",
+  "description": "",
+  "sizes": [
+    "Die: 48\"wx8\"dx37\"h (P3)",
+    "Bench: 30\"wx14\"dx4\"h (P5)",
+    "Leg: 4\"wx14\"dx14\"h (P5)",
+    "Base: 92\"wx14\"dx8\"h (P1)"
+  ],
+  "image": "/uploads/stones/DC-20.png",
+  "imageAlt": "Benches design DC-20, memorial bench"
+}

@@ -44,6 +44,8 @@ export type GalleryStone = {
   width: number;
   height: number;
   categoryName: string;
+  /** The catalog series shown above the name, e.g. "Specialty uprights". */
+  series: string | null;
   categorySlug: string;
 };
 
@@ -90,6 +92,7 @@ export async function getGalleryStones(categorySlug?: string) {
       imageAlt: s.imageAlt || s.name,
       ...readImageSize(s.image),
       categoryName: s.category.name,
+      series: s.series || null,
       categorySlug: s.category.slug,
     }))
     .sort((a, b) => a.sku.localeCompare(b.sku));

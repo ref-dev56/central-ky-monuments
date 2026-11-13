@@ -1,0 +1,13 @@
+{
+  "name": "Specialty Uprights - DC-19",
+  "sku": "DC-19",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Specialty uprights",
+  "description": "",
+  "sizes": [
+    "Die: 60\"wx8\"dx48\"h (P5)",
+    "Base: 72\"wx14\"dx8\"h (P1) w/2\" Pol Margin"
+  ],
+  "image": "/uploads/stones/DC-19.png",
+  "imageAlt": "Specialty uprights design DC-19, upright headstone"
+}

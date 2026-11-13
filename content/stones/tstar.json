@@ -1,0 +1,13 @@
+{
+  "name": "Tribute Star",
+  "sku": "TSTAR",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Specialty uprights",
+  "description": "",
+  "sizes": [
+    "Die: 24\"wx6\"dx36\"h (P5)",
+    "Base: 36\"wx12\"dx6\"h (P1)"
+  ],
+  "image": "/uploads/stones/TSTAR.png",
+  "imageAlt": "Tribute Star, upright headstone"
+}
