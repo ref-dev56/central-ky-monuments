@@ -10,8 +10,11 @@ const footerLinks = [
 ];
 
 export default function SiteFooter({ settings }: { settings: Settings }) {
-  const { businessName, legalName, logo, phone, email, address, hours, serviceArea } =
+  const { businessName, legalName, logo, phone, email, address, hours, serviceArea, social } =
     settings;
+  const socialLinks = (social ?? []).flatMap((s) =>
+    s?.label && s?.url ? [{ label: s.label, url: s.url }] : [],
+  );
   // "Versailles, KY 40383"; nothing at all when there's no city.
   const cityLine = address?.city
     ? [address.city, [address.state, address.zip].filter(Boolean).join(" ")]
@@ -69,6 +72,23 @@ export default function SiteFooter({ settings }: { settings: Settings }) {
               {line}
             </span>
           ))}
+          {socialLinks.length > 0 && (
+            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+              {socialLinks.map((link) => (
+                <li key={link.url}>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-link hover:text-ink"
+                  >
+                    {link.label}
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <nav aria-label="Footer" className="flex flex-col gap-1.5 text-[15px] leading-relaxed">
