@@ -507,7 +507,7 @@ export default function RequestForm({
             type="text"
             value={fields.cemetery}
             onChange={(e) => set("cemetery", e.target.value)}
-            placeholder="e.g. Georgetown Cemetery"
+            placeholder="e.g. Frankfort Cemetery"
             className={inputClass}
           />
         </div>
