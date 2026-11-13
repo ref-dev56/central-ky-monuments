@@ -1,0 +1,14 @@
+{
+  "name": "Park Bench",
+  "sku": "PARK-BENCH",
+  "category": "content/categories/benches.json",
+  "series": "Benches",
+  "description": "",
+  "sizes": [
+    "Back Rest: 48\"wx2\"dx13\"h (P5)",
+    "Bench: 48\"wx20\"dx2\"h (P5)",
+    "Legs (2): 2\"wx20\"dx28\"h (P5)"
+  ],
+  "image": "/uploads/stones/PARK-BENCH.png",
+  "imageAlt": "Park Bench, memorial bench"
+}

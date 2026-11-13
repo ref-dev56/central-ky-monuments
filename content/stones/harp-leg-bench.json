@@ -1,0 +1,13 @@
+{
+  "name": "Harp Leg Bench",
+  "sku": "HARP-LEG-BENCH",
+  "category": "content/categories/benches.json",
+  "series": "Benches",
+  "description": "",
+  "sizes": [
+    "Bench: 48\"wx14\"dx4\"h (P5)",
+    "Legs (2): 4\"wx14\"dx14\"h (P5)"
+  ],
+  "image": "/uploads/stones/HARP-LEG-BENCH.png",
+  "imageAlt": "Harp Leg Bench, memorial bench"
+}

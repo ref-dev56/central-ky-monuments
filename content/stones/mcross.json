@@ -1,0 +1,13 @@
+{
+  "name": "Memorial Cross",
+  "sku": "MCROSS",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Specialty uprights",
+  "description": "",
+  "sizes": [
+    "Die: 22\"wx6\"dx42\"h (P5)",
+    "Base: 36\"wx14\"dx6\"h (P1) w/4\" Chamfer"
+  ],
+  "image": "/uploads/stones/MCROSS.png",
+  "imageAlt": "Memorial Cross, upright headstone"
+}

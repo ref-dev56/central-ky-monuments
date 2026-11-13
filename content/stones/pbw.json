@@ -1,0 +1,14 @@
+{
+  "name": "Polished Bevel Wings",
+  "sku": "PBW",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Winged uprights",
+  "description": "",
+  "sizes": [
+    "Wings (2): 20\"wx8\"dx26\"h (P5)",
+    "Die: 20\"wx8\"dx35\"h (P5)",
+    "Base: 78\"wx14\"dx6\"h (P5)"
+  ],
+  "image": "/uploads/stones/PBW.png",
+  "imageAlt": "Polished Bevel Wings, upright headstone"
+}

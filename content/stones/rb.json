@@ -1,0 +1,12 @@
+{
+  "name": "Rustic Boulder",
+  "sku": "RB",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Specialty uprights",
+  "description": "",
+  "sizes": [
+    "Die: 36\"wx10\"dx28\"h (P5)"
+  ],
+  "image": "/uploads/stones/RB.png",
+  "imageAlt": "Rustic Boulder, upright headstone"
+}

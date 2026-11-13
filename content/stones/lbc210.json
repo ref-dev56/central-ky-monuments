@@ -1,0 +1,12 @@
+{
+  "name": "Junior Markers - LBC210",
+  "sku": "LBC210",
+  "category": "content/categories/junior-markers.json",
+  "series": "Junior markers",
+  "description": "",
+  "sizes": [
+    "20\" slant"
+  ],
+  "image": "/uploads/stones/LBC210.png",
+  "imageAlt": "Junior markers design LBC210, junior marker"
+}

@@ -16,6 +16,9 @@ type Props = {
 };
 
 const COLUMNS = 3;
+/** Approximate tile width on desktop (px), used to balance the columns. */
+const TILE_WIDTH = 370;
+const TILE_PADDING = 32;
 
 /**
  * Splits stones into columns, always adding the next photo to the shortest
@@ -30,7 +33,10 @@ function toColumns(stones: GalleryStone[]) {
   stones.forEach((stone, index) => {
     const shortest = columns.reduce((a, b) => (b.height < a.height ? b : a));
     shortest.items.push({ stone, index });
-    shortest.height += stone.height / stone.width + 0.05; // + gap
+    // Images are never shown wider than their own pixel width, so a small
+    // image makes a shorter tile than its shape alone suggests.
+    const shown = Math.min(stone.width, TILE_WIDTH - TILE_PADDING);
+    shortest.height += (shown * stone.height) / stone.width + TILE_PADDING + 16; // + gap
   });
   return columns;
 }
@@ -107,16 +113,18 @@ export default function Gallery({
                   lastTile.current = e.currentTarget;
                   open(index);
                 }}
-                className="group block overflow-hidden rounded-md bg-stone focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-brand"
+                className="group flex items-center justify-center overflow-hidden rounded-md bg-stone p-4 focus-visible:outline-3 focus-visible:outline-offset-3 focus-visible:outline-brand"
               >
                 <Image
                   src={stone.image}
                   alt=""
                   width={stone.width}
                   height={stone.height}
-                  sizes="(min-width: 640px) 33vw, 100vw"
+                  sizes={`${stone.width}px`}
                   loading={index < COLUMNS ? "eager" : "lazy"}
-                  className="block h-auto w-full transition duration-300 group-hover:scale-[1.015] group-hover:opacity-90"
+                  // Never wider than the image itself, so nothing is enlarged.
+                  style={{ maxWidth: stone.width }}
+                  className="block h-auto w-full transition-opacity duration-300 group-hover:opacity-85"
                 />
               </button>
             ))}

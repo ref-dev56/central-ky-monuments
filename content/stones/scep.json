@@ -1,0 +1,13 @@
+{
+  "name": "Scalloped Edge Pinnacle",
+  "sku": "SCEP",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Specialty uprights",
+  "description": "",
+  "sizes": [
+    "Die: 30\"wx6\"dx36\"h (P5)",
+    "Base: 36\"wx12\"dx6\"h (P5)"
+  ],
+  "image": "/uploads/stones/SCEP.png",
+  "imageAlt": "Scalloped Edge Pinnacle, upright headstone"
+}

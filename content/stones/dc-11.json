@@ -1,0 +1,13 @@
+{
+  "name": "Tree Trunk",
+  "sku": "DC-11",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Specialty uprights",
+  "description": "",
+  "sizes": [
+    "Die: 36\"wx6\"dx34\"h (P5)",
+    "Base: 54\"wx12\"dx6\"h (P1)"
+  ],
+  "image": "/uploads/stones/DC-11.png",
+  "imageAlt": "Tree Trunk, upright headstone"
+}

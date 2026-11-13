@@ -1,0 +1,13 @@
+{
+  "name": "Specialty Uprights - DC-3",
+  "sku": "DC-3",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Specialty uprights",
+  "description": "",
+  "sizes": [
+    "Die: 30\"wx8\"dx28\"h (P5)",
+    "Base: 36\"wx14\"dx8\"h (P1)"
+  ],
+  "image": "/uploads/stones/DC-3.png",
+  "imageAlt": "Specialty uprights design DC-3, upright headstone"
+}

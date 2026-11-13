@@ -1,0 +1,13 @@
+{
+  "name": "Specialty Uprights - DC-31",
+  "sku": "DC-31",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Specialty uprights",
+  "description": "",
+  "sizes": [
+    "Die: 36\"wx8\"dx50\"h (BRP)",
+    "Base: 48\"wx14\"dx8\"h (P1) w/2\" Pol Margin"
+  ],
+  "image": "/uploads/stones/DC-31.png",
+  "imageAlt": "Specialty uprights design DC-31, upright headstone"
+}

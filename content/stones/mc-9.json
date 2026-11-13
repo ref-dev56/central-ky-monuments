@@ -1,0 +1,13 @@
+{
+  "name": "2 Crypt Mausoleum",
+  "sku": "MC-9",
+  "category": "content/categories/mausoleums.json",
+  "series": "Mausoleum collection",
+  "description": "",
+  "sizes": [
+    "Overall: 66.125\"wx98.5\"dx66.125\"h",
+    "Shutter Size: 31.5\"wx26\"h"
+  ],
+  "image": "/uploads/stones/MC-9.png",
+  "imageAlt": "2 Crypt Mausoleum, mausoleum"
+}

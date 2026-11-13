@@ -1,0 +1,14 @@
+{
+  "name": "Wing Reverse Taper",
+  "sku": "WRT",
+  "category": "content/categories/upright-headstones.json",
+  "series": "Winged uprights",
+  "description": "",
+  "sizes": [
+    "Wings (2): 26\"wx6\"dx22\"h (P2)",
+    "Plinth: 27\"wx8\"dx6\"h (P1 SS)",
+    "Base: 72\"wx12\"dx6\"h (P1) w/2\" Pol Margin"
+  ],
+  "image": "/uploads/stones/WRT.png",
+  "imageAlt": "Wing Reverse Taper, upright headstone"
+}

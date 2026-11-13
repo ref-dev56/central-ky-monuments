@@ -1,0 +1,13 @@
+{
+  "name": "Jewish Series - JS-11",
+  "sku": "JS-11",
+  "category": "content/categories/monuments-crosses.json",
+  "series": "Jewish series",
+  "description": "",
+  "sizes": [
+    "Die: 72\"wx14\"dx58\"h",
+    "Base: 78\"wx16\"dx10\"h"
+  ],
+  "image": "/uploads/stones/JS-11.png",
+  "imageAlt": "Jewish series design JS-11, monument"
+}

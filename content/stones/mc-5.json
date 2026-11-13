@@ -1,0 +1,13 @@
+{
+  "name": "4 Crypt Mausoleum",
+  "sku": "MC-5",
+  "category": "content/categories/mausoleums.json",
+  "series": "Mausoleum collection",
+  "description": "",
+  "sizes": [
+    "Overall: 86\"wx102.25\"dx66.125\"h",
+    "Shutter Size: 65\"wx26\"h"
+  ],
+  "image": "/uploads/stones/MC-5.png",
+  "imageAlt": "4 Crypt Mausoleum, mausoleum"
+}

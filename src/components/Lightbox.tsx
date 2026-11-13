@@ -163,16 +163,18 @@ export default function Lightbox({
 
           <div className="min-h-0 flex-1 overflow-y-auto pb-24 sm:flex sm:overflow-hidden sm:pb-0">
             {/* Photo, shown at its own shape */}
-            <div className="flex items-center justify-center bg-stone sm:min-h-[460px] sm:flex-[1_1_55%]">
+            <div className="flex items-center justify-center bg-stone p-6 sm:min-h-[460px] sm:flex-[1_1_55%]">
               <Image
                 key={stone.sku}
                 src={stone.image}
                 alt={stone.imageAlt}
                 width={stone.width}
                 height={stone.height}
-                sizes="(min-width: 640px) 55vw, 100vw"
+                sizes={`${stone.width}px`}
                 loading="eager"
-                className="max-h-[48vh] w-auto object-contain sm:max-h-[min(720px,calc(100dvh-48px))]"
+                // Shown at its own size at most, never enlarged.
+                style={{ maxWidth: stone.width }}
+                className="h-auto max-h-[44vh] w-full object-contain sm:max-h-[min(672px,calc(100dvh-96px))]"
               />
             </div>
 
@@ -182,7 +184,7 @@ export default function Lightbox({
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex flex-col gap-1.5">
                     <span className="text-xs font-semibold uppercase tracking-wider text-muted">
-                      {stone.categoryName}
+                      {stone.series || stone.categoryName}
                     </span>
                     <h2
                       id="lightbox-title"
@@ -278,7 +280,7 @@ export default function Lightbox({
                   {stone.sizes.length > 0 && (
                     <>
                       <dt className="text-muted">
-                        {stone.sizes.length > 1 ? "Sizes" : "Size"}
+                        Size
                       </dt>
                       <dd>
                         {stone.sizes.map((size) => (
