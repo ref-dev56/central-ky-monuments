@@ -23,5 +23,9 @@
     "Paris",
     "Winchester"
   ],
-  "social": []
+  "social": [],
+  "colors": {
+    "intro": "Every design is available in each of these colors. Choose one to include it with your request.",
+    "specialOrderNote": ""
+  }
 }

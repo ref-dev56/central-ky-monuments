@@ -7,6 +7,7 @@ import ContactBand from "@/components/ContactBand";
 import Gallery from "@/components/Gallery";
 import {
   getCategories,
+  getColors,
   getGalleryStones,
   getHome,
   getSettings,
@@ -33,11 +34,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const [settings, home, categories, stones] = await Promise.all([
+  const [settings, home, categories, stones, colors] = await Promise.all([
     getSettings(),
     getHome(),
     getCategories(),
     getGalleryStones(),
+    getColors(),
   ]);
   const towns = present(settings.serviceArea);
   // Typed text in the CMS wins; blank = list the towns from the service area.
@@ -60,7 +62,9 @@ export default async function Home() {
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-ink/55" />
         <div className="mx-auto flex min-h-[420px] max-w-6xl flex-col justify-end gap-4 px-4 pb-12 pt-24 sm:min-h-[540px] sm:px-6 sm:pb-16">
           {customEyebrow ? (
-            <p className="text-sm font-medium tracking-wide text-sage-tint">{customEyebrow}</p>
+            <p className="text-sm font-medium tracking-wide text-sage-tint">
+              {customEyebrow}
+            </p>
           ) : (
             towns.length > 0 && (
               <p className="text-sm font-medium tracking-wide text-sage-tint">
@@ -74,7 +78,10 @@ export default async function Home() {
                       {i < towns.length - 1 && (
                         <>
                           <span className="sr-only">,</span>
-                          <span aria-hidden="true" className="ml-2 mr-1 opacity-70">
+                          <span
+                            aria-hidden="true"
+                            className="ml-2 mr-1 opacity-70"
+                          >
                             ·
                           </span>
                         </>
@@ -121,6 +128,11 @@ export default async function Home() {
             stones={stones}
             businessName={settings.businessName}
             label="All designs"
+            colorOptions={{
+              colors,
+              intro: settings.colors?.intro,
+              specialNote: settings.colors?.specialOrderNote,
+            }}
           />
         </div>
       </div>

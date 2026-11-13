@@ -38,7 +38,6 @@ export type GalleryStone = {
   sku: string;
   name: string;
   description: string;
-  materials: string[];
   sizes: string[];
   image: string;
   imageAlt: string;
@@ -56,7 +55,9 @@ export function readImageSize(src: string) {
     // Phone photos are often stored sideways with a "rotate me" flag;
     // swap the sides so the gallery reserves the shape people will see.
     if (width && height) {
-      return orientation && orientation >= 5 ? { width: height, height: width } : { width, height };
+      return orientation && orientation >= 5
+        ? { width: height, height: width }
+        : { width, height };
     }
   } catch {
     // Missing or unreadable file: fall back to a 4:5 portrait shape.
@@ -84,7 +85,6 @@ export async function getGalleryStones(categorySlug?: string) {
       sku: s.sku,
       name: s.name,
       description: s.description ?? "",
-      materials: (s.materials ?? []).filter((m): m is string => !!m),
       sizes: (s.sizes ?? []).filter((m): m is string => !!m),
       image: s.image,
       imageAlt: s.imageAlt || s.name,
@@ -113,6 +113,37 @@ export function telHref(phone?: string | null) {
   const digits = (phone ?? "").replace(/\D/g, "");
   if (!digits) return undefined;
   return `tel:+${digits.length === 10 ? `1${digits}` : digits}`;
+}
+
+/** A granite color offered for every design (content/colors). */
+export type GraniteColor = {
+  slug: string;
+  name: string;
+  group: "stock" | "special";
+  image: string;
+};
+
+/** All granite colors: stock first, then special order, each in CMS order. */
+export async function getColors(): Promise<GraniteColor[]> {
+  const { data } = await client.queries.colorConnection({ first: 100 });
+  return (data.colorConnection.edges ?? [])
+    .map((e) => e?.node)
+    .filter((c): c is NonNullable<typeof c> => !!c?.name && !!c.image)
+    .map((c) => ({
+      slug: c._sys.filename,
+      name: c.name,
+      group: c.group === "special" ? ("special" as const) : ("stock" as const),
+      image: c.image as string,
+      order: c.order ?? 999,
+    }))
+    .sort((a, b) =>
+      a.group === b.group
+        ? a.order - b.order || a.name.localeCompare(b.name)
+        : a.group === "stock"
+          ? -1
+          : 1,
+    )
+    .map(({ slug, name, group, image }) => ({ slug, name, group, image }));
 }
 
 /** The Home page banner (content/pages/home.json). */
