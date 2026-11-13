@@ -10,11 +10,14 @@ const footerLinks = [
 ];
 
 export default function SiteFooter({ settings }: { settings: Settings }) {
-  const { businessName, logo, phone, email, address, hours, serviceArea } =
+  const { businessName, legalName, logo, phone, email, address, hours, serviceArea } =
     settings;
-  const cityLine = [address?.city, [address?.state, address?.zip].filter(Boolean).join(" ")]
-    .filter(Boolean)
-    .join(", ");
+  // "Versailles, KY 40383"; nothing at all when there's no city.
+  const cityLine = address?.city
+    ? [address.city, [address.state, address.zip].filter(Boolean).join(" ")]
+        .filter(Boolean)
+        .join(", ")
+    : "";
   const towns = (serviceArea ?? []).filter(Boolean);
   const year = new Date().getFullYear();
 
@@ -78,7 +81,7 @@ export default function SiteFooter({ settings }: { settings: Settings }) {
         </nav>
       </div>
       <div className="mx-auto max-w-6xl border-t border-border px-4 py-5 text-[13px] text-muted sm:px-6">
-        © {year} {businessName}
+        © {year} {legalName || businessName}
       </div>
     </footer>
   );

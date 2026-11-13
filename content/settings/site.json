@@ -1,19 +1,19 @@
 {
   "businessName": "Central Kentucky Monuments",
+  "legalName": "Central KY Monuments, LLC",
   "logo": "/uploads/logo.svg",
   "shareImage": "/uploads/share-default.jpg",
   "logoMark": "/uploads/logo-mark.svg",
   "phone": "(859) 873-3322",
-  "email": "",
+  "email": "sales@centralkymonuments.com",
   "address": {
-    "line1": "PO Box [number]",
-    "city": "Versailles",
-    "state": "KY",
+    "line1": "",
+    "city": "",
+    "state": "",
     "zip": ""
   },
   "hours": [
-    "Mon–Fri 9am–5pm",
-    "Saturday by appointment"
+    "Mon–Fri 8am–4pm"
   ],
   "serviceArea": [
     "Lexington",

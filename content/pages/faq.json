@@ -11,7 +11,7 @@
         },
         {
           "question": "What granite colors are available?",
-          "answer": "Most designs come in several granite colors, such as gray, black, rose and blue pearl. The colors offered for each design are listed in its gallery details, and we can show you samples."
+          "answer": "Every design is available in 21 granite colors: 8 stock colors and 13 special-order colors. Select View colors on any design in our gallery to see them all, and choose one to include it with your request."
         },
         {
           "question": "Can you add a photo, emblem or custom artwork?",
@@ -19,7 +19,20 @@
         },
         {
           "question": "Do you create fully custom designs?",
-          "answer": "Every design in our gallery can be adapted in size, color and lettering. If you're looking for something different, let us know and we'll talk through the options."
+          "answer": "Yes. From traditional monuments and markers to fully customized designs, we'll help bring your vision to life. Every design in our gallery can also be adapted in size, color and lettering."
+        }
+      ]
+    },
+    {
+      "title": "Planning ahead",
+      "questions": [
+        {
+          "question": "Can I plan a memorial ahead of time?",
+          "answer": "Yes. Many people choose and design a memorial in advance, so their loved ones won't have to make these decisions later. We'll walk you through the options and help you plan at your own pace."
+        },
+        {
+          "question": "Can a date be added later, such as for a companion memorial?",
+          "answer": "Yes. Names and dates can be added to an existing memorial later. Let us know when the time comes and we'll take care of it."
         }
       ]
     },
@@ -28,15 +41,11 @@
       "questions": [
         {
           "question": "How long does it take to get a headstone?",
-          "answer": "Timing depends on the design, the granite and the cemetery's schedule. We'll give you an estimated timeline when you place your order and keep you updated along the way."
+          "answer": "Most memorials take a minimum of 6 weeks from order to installation. Timing depends on the design, the granite color and the cemetery's schedule, and we'll give you an estimated timeline when you place your order."
         },
         {
           "question": "Will I see a proof before it's made?",
           "answer": "Yes. You'll review and approve a design proof showing the layout, lettering and any artwork before anything is made."
-        },
-        {
-          "question": "Can a date be added later, such as for a companion memorial?",
-          "answer": "Yes. Names and dates can be added to an existing memorial later. Let us know when the time comes and we'll take care of it."
         }
       ]
     },
@@ -49,7 +58,11 @@
         },
         {
           "question": "Do you handle installation?",
-          "answer": "Yes. We coordinate with the cemetery and set the memorial, so you don't have to manage the details yourself."
+          "answer": "Yes. We install your memorial, and the foundation is included. We coordinate with the cemetery, so you don't have to manage the details yourself."
+        },
+        {
+          "question": "What areas do you serve?",
+          "answer": "We serve families throughout Central Kentucky, including Lexington, Georgetown, Frankfort, Versailles, Paris, Winchester and the surrounding counties. We can also travel to cemeteries farther away on request."
         }
       ]
     },
@@ -58,11 +71,11 @@
       "questions": [
         {
           "question": "How much does a memorial cost?",
-          "answer": "The price depends on the design, size, granite color and lettering. Request information or give us a call and we'll prepare a quote with no cost or obligation."
+          "answer": "There are too many variables to list a single price: the design, size, granite color, lettering and artwork all play a part. Request information or give us a call and we'll prepare a quote with no cost or obligation."
         },
         {
           "question": "Do you offer payment plans?",
-          "answer": "Ask us about payment options when you request a quote, and we'll explain what's available."
+          "answer": "Payment options depend on the memorial and your situation. We'll talk them through with you when we prepare your quote."
         }
       ]
     }

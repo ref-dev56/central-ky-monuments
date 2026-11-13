@@ -24,6 +24,7 @@ export default function BusinessJsonLd({
     "@type": "LocalBusiness",
     "@id": `${SITE_URL}/#business`,
     name: settings.businessName,
+    legalName: settings.legalName || undefined,
     description: description || undefined,
     url: `${SITE_URL}/`,
     logo: abs(settings.logo),

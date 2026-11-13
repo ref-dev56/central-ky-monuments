@@ -1,6 +1,6 @@
 {
   "title": "Privacy policy",
-  "updated": "2026-11-02T05:00:00.000Z",
+  "updated": "2026-11-13T05:00:00.000Z",
   "intro": "This policy explains what information this website collects, why we collect it and how we look after it. We never sell your information.",
   "sections": [
     {
@@ -13,7 +13,7 @@
     },
     {
       "heading": "Who we share it with",
-      "body": "We use a small number of trusted service providers to run this website and receive your requests, including Google (which stores form submissions) and Cloudflare (which protects the form from spam). They process information only on our behalf.\n\nWe do not sell, rent or trade your personal information.\n"
+      "body": "We use a small number of trusted service providers to run this website and receive your requests, including Netlify (which hosts the website), Google (which stores form submissions) and Cloudflare (which protects the form from spam). They process information only on our behalf.\n\nWe do not sell, rent or trade your personal information.\n"
     },
     {
       "heading": "Cookies and analytics",
@@ -21,7 +21,7 @@
     },
     {
       "heading": "How long we keep it",
-      "body": "We keep request details for as long as we need them to help you and to keep a record of your order. You can ask us to delete them at any time.\n"
+      "body": "We keep request details for up to one year, then delete them. If you place an order with us, we keep the details we need for your order records. You can ask us to delete your information at any time.\n"
     },
     {
       "heading": "Your choices",

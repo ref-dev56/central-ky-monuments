@@ -29,9 +29,12 @@ export default async function PrivacyPage() {
       })
     : null;
   const address = settings.address;
-  const cityLine = [address?.city, [address?.state, address?.zip].filter(Boolean).join(" ")]
-    .filter(Boolean)
-    .join(", ");
+  // "Versailles, KY 40383"; nothing at all when there's no city.
+  const cityLine = address?.city
+    ? [address.city, [address.state, address.zip].filter(Boolean).join(" ")]
+        .filter(Boolean)
+        .join(", ")
+    : "";
 
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 pb-20 pt-12 sm:px-6 md:flex-row md:items-start md:gap-14 md:pt-16">
@@ -70,7 +73,7 @@ export default async function PrivacyPage() {
         <section id="contact" className="flex scroll-mt-24 flex-col gap-2.5 rounded-xl bg-stone p-6">
           <h2 className="font-serif text-[28px] font-semibold">Contact us</h2>
           <p className="text-base leading-[1.7] text-body">
-            {settings.businessName}
+            {settings.legalName || settings.businessName}
             {address?.line1 && (
               <>
                 <br />

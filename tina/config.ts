@@ -478,6 +478,13 @@ export default defineConfig({
             isTitle: true,
             required: true,
           },
+          {
+            type: "string",
+            name: "legalName",
+            label: "Legal business name",
+            description:
+              "Shown in the copyright line and the privacy policy, e.g. Central KY Monuments, LLC. Leave blank to use the business name.",
+          },
           { type: "image", name: "logo", label: "Logo" },
           {
             type: "image",
