@@ -121,7 +121,7 @@ export default function Lightbox({
           <ChevronLeftIcon className="size-6" />
         </button>
 
-        <div className="flex h-full w-full flex-col overflow-hidden bg-card sm:h-auto sm:max-h-[calc(100dvh-48px)] sm:max-w-5xl sm:flex-row sm:rounded-xl">
+        <div className="flex h-full w-full flex-col overflow-hidden bg-card sm:h-[min(720px,calc(100dvh-48px))] sm:max-w-5xl sm:flex-row sm:rounded-xl">
           {/* Phone top bar */}
           <div className="flex h-14 shrink-0 items-center justify-between border-b border-border px-1.5 sm:hidden">
             <button
@@ -162,8 +162,9 @@ export default function Lightbox({
           </div>
 
           <div className="min-h-0 flex-1 overflow-y-auto pb-24 sm:flex sm:overflow-hidden sm:pb-0">
-            {/* Photo, shown at its own shape */}
-            <div className="flex items-center justify-center bg-stone p-6 sm:min-h-[460px] sm:flex-[1_1_55%]">
+            {/* Photo, shown at its own shape in a fixed-size box, so the modal
+                doesn't change size from stone to stone */}
+            <div className="flex h-[44dvh] items-center justify-center bg-stone p-6 sm:h-auto sm:flex-[1_1_55%]">
               <Image
                 key={stone.sku}
                 src={stone.image}
@@ -174,7 +175,7 @@ export default function Lightbox({
                 loading="eager"
                 // Shown at its own size at most, never enlarged.
                 style={{ maxWidth: stone.width }}
-                className="h-auto max-h-[44vh] w-full object-contain sm:max-h-[min(672px,calc(100dvh-96px))]"
+                className="h-auto max-h-[calc(44dvh-48px)] w-full object-contain sm:max-h-[min(672px,calc(100dvh-96px))]"
               />
             </div>
 
