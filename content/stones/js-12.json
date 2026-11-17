@@ -5,10 +5,10 @@
   "series": "Jewish series",
   "description": "A monument topped with a Star of David, resting on a stepped sub-base and base.",
   "sizes": [
-    "Die: 56\"wx8\"dx36\"h",
-    "Sub-Base: 68\"wx12\"dx3.5\"h",
-    "Base: 78\"wx16\"dx10\"h"
+    "Die: 56\"w x 8\"d x 36\"h",
+    "Sub-Base: 68\"w x 12\"d x 3.5\"h",
+    "Base: 78\"w x 16\"d x 10\"h"
   ],
-  "image": "/uploads/stones/JS-12.png",
+  "image": "/uploads/stones/JS-12.webp",
   "imageAlt": "Jewish series design JS-12, monument"
 }

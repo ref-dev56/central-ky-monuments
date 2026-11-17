@@ -3,11 +3,11 @@
   "sku": "3-CUBE",
   "category": "content/categories/junior-markers.json",
   "series": "Junior markers",
-  "description": "Three stacked granite alphabet blocks set on a single base.",
+  "description": "Three stacked granite alphabet blocks set on a single base. A charming, personal memorial for a child.",
   "sizes": [
-    "Die (3): 11\"wx11\"dx11\"h (P5)",
-    "Base: 36\"wx16\"dx6\"h (P1) w/2\" Pol Margin"
+    "Die (3): 11\"w x 11\"d x 11\"h (P5)",
+    "Base: 36\"w x 16\"d x 6\"h (P1) w/2\" Pol Margin"
   ],
-  "image": "/uploads/stones/3-CUBE.png",
+  "image": "/uploads/stones/3-CUBE.webp",
   "imageAlt": "3 Cube, junior marker"
 }

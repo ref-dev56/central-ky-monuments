@@ -5,10 +5,10 @@
   "series": "Benches",
   "description": "A granite park-style bench with a full backrest and sturdy legs. It invites visitors to sit, reflect, and stay a while.",
   "sizes": [
-    "Back Rest: 48\"wx2\"dx13\"h (P5)",
-    "Bench: 48\"wx20\"dx2\"h (P5)",
-    "Legs (2): 2\"wx20\"dx28\"h (P5)"
+    "Back Rest: 48\"w x 2\"d x 13\"h (P5)",
+    "Bench: 48\"w x 20\"d x 2\"h (P5)",
+    "Legs (2): 2.5\"w x 20\"d x 30\"h (P5)"
   ],
-  "image": "/uploads/stones/PARK-BENCH.png",
+  "image": "/uploads/stones/PARK-BENCH.webp",
   "imageAlt": "Park Bench, memorial bench"
 }
