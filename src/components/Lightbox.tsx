@@ -171,7 +171,7 @@ export default function Lightbox({
                 alt={stone.imageAlt}
                 width={stone.width}
                 height={stone.height}
-                sizes={`${stone.width}px`}
+                sizes={`(min-width: 640px) min(${stone.width}px, 560px), min(${stone.width}px, 100vw)`}
                 loading="eager"
                 // Shown at its own size at most, never enlarged.
                 style={{ maxWidth: stone.width }}

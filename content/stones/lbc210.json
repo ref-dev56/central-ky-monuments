@@ -3,10 +3,10 @@
   "sku": "LBC210",
   "category": "content/categories/junior-markers.json",
   "series": "Junior markers",
-  "description": "A 20\" slant marker with an etched cartoon car.",
+  "description": "A 20\" slant marker with an etched cartoon car. A sweet tribute for a little boy.",
   "sizes": [
     "20\" slant"
   ],
-  "image": "/uploads/stones/LBC210.png",
+  "image": "/uploads/stones/LBC210.webp",
   "imageAlt": "Junior markers design LBC210, junior marker"
 }

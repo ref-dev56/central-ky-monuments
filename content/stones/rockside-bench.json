@@ -5,11 +5,11 @@
   "series": "Benches",
   "description": "A polished bench seat paired with a rustic, natural rock-pitch upright. Rugged and refined at once.",
   "sizes": [
-    "Die: 34\"wx10\"dx30\"h (BRP)",
-    "Bench: 34\"wx14\"dx4\"h (P5)",
-    "Pedestal: 26\"wx8\"dx14\"h (P5)",
-    "w/ (2) 6\"dia.x9\"h core holes"
+    "Die: 34\"w x 10\"d x 30\"h (BRP)",
+    "Bench: 34\"w x 14\"d x 4\"h (P5)",
+    "Pedestal: 26\"w x 8\"d x 14\"h (P5)",
+    "w/ (2) 6\"dia. x 9\"h core holes"
   ],
-  "image": "/uploads/stones/ROCKSIDE-BENCH.png",
+  "image": "/uploads/stones/ROCKSIDE-BENCH.webp",
   "imageAlt": "Rockside Bench, memorial bench"
 }

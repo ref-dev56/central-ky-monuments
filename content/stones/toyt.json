@@ -3,11 +3,11 @@
   "sku": "TOYT",
   "category": "content/categories/junior-markers.json",
   "series": "Junior markers",
-  "description": "A carved granite toy truck resting on a polished base.",
+  "description": "A carved granite toy truck resting on a polished base. A one-of-a-kind memorial for a child.",
   "sizes": [
-    "Die: 28\"wx8\"dx18\"h (P5)",
-    "Base: 36\"wx14\"dx8\"h (P1)"
+    "Die: 28\"w x 8\"d x 18\"h (P5)",
+    "Base: 36\"w x 14\"d x 8\"h (P1)"
   ],
-  "image": "/uploads/stones/TOYT.png",
+  "image": "/uploads/stones/TOYT.webp",
   "imageAlt": "Toy Truck, junior marker"
 }

@@ -155,7 +155,7 @@ export default function Gallery({
                   alt=""
                   width={stone.width}
                   height={stone.height}
-                  sizes={`${stone.width}px`}
+                  sizes={`(min-width: 640px) min(${stone.width}px, 33vw), min(${stone.width}px, 100vw)`}
                   loading={index < COLUMNS ? "eager" : "lazy"}
                   // Never wider than the image itself, so nothing is enlarged.
                   style={{ maxWidth: stone.width }}
