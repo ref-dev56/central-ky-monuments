@@ -8,9 +8,45 @@ import client from "../../tina/__generated__/client";
  * time, so components never talk to the Tina client directly.
  */
 
+/**
+ * On Netlify the content comes from TinaCloud, which hands back every image
+ * as a link on its own server (https://assets.tina.io/<project>/stones/X.webp)
+ * instead of the path in the repo (/uploads/stones/X.webp). The site needs
+ * the repo path: it reads each image's size from /public to lay out the
+ * gallery, and serves the smaller copies made by optimize-images. This turns
+ * those links back into repo paths. Local builds already get repo paths.
+ */
+const TINA_MEDIA = /^https:\/\/assets\.tina\.io\/[^/]+(?:\/__staging\/.+?\/__file)?\/+(.+)$/;
+
+export function localMedia<T>(value: T): T {
+  if (typeof value === "string") {
+    const match = value.match(TINA_MEDIA);
+    return (match ? `/uploads/${match[1]}` : value) as T;
+  }
+  if (Array.isArray(value)) return value.map(localMedia) as T;
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([k, v]) => [k, localMedia(v)]),
+    ) as T;
+  }
+  return value;
+}
+
+/** client.queries, with image links turned back into repo paths. */
+const queries = new Proxy(client.queries, {
+  get(target, key) {
+    const query = Reflect.get(target, key);
+    if (typeof query !== "function") return query;
+    return async (...args: unknown[]) => {
+      const result = await query(...args);
+      return { ...result, data: localMedia(result.data) };
+    };
+  },
+}) as typeof client.queries;
+
 /** The single Site settings document (content/settings/site.json). */
 export async function getSettings() {
-  const { data } = await client.queries.settings({ relativePath: "site.json" });
+  const { data } = await queries.settings({ relativePath: "site.json" });
   return data.settings;
 }
 
@@ -18,7 +54,7 @@ export type Settings = Awaited<ReturnType<typeof getSettings>>;
 
 /** All categories, sorted by their "Sort order" field. */
 export async function getCategories() {
-  const { data } = await client.queries.categoryConnection();
+  const { data } = await queries.categoryConnection();
   return (data.categoryConnection.edges ?? [])
     .map((edge) => edge?.node)
     .filter((category) => category != null)
@@ -27,7 +63,7 @@ export async function getCategories() {
 
 /** All stones (first 500), in file order. */
 export async function getStones() {
-  const { data } = await client.queries.stoneConnection({ first: 500 });
+  const { data } = await queries.stoneConnection({ first: 500 });
   return (data.stoneConnection.edges ?? [])
     .map((edge) => edge?.node)
     .filter((stone) => stone != null);
@@ -62,7 +98,9 @@ export function readImageSize(src: string) {
         : { width, height };
     }
   } catch {
-    // Missing or unreadable file: fall back to a 4:5 portrait shape.
+    // Missing or unreadable file: fall back to a 4:5 portrait shape, and
+    // say so in the build log, since the gallery can't balance on guesses.
+    console.warn(`[images] Couldn't read the size of ${src}; using 800x1000.`);
   }
   return { width: 800, height: 1000 };
 }
@@ -128,7 +166,7 @@ export type GraniteColor = {
 
 /** All granite colors: stock first, then special order, each in CMS order. */
 export async function getColors(): Promise<GraniteColor[]> {
-  const { data } = await client.queries.colorConnection({ first: 100 });
+  const { data } = await queries.colorConnection({ first: 100 });
   return (data.colorConnection.edges ?? [])
     .map((e) => e?.node)
     .filter((c): c is NonNullable<typeof c> => !!c?.name && !!c.image)
@@ -151,13 +189,13 @@ export async function getColors(): Promise<GraniteColor[]> {
 
 /** The Home page banner (content/pages/home.json). */
 export async function getHome() {
-  const { data } = await client.queries.home({ relativePath: "home.json" });
+  const { data } = await queries.home({ relativePath: "home.json" });
   return data.home;
 }
 
 /** The Request information page and its thank-you page (content/pages/request.json). */
 export async function getRequestPage() {
-  const { data } = await client.queries.request({
+  const { data } = await queries.request({
     relativePath: "request.json",
   });
   return data.request;
@@ -165,19 +203,19 @@ export async function getRequestPage() {
 
 /** The About page (content/pages/about.json). */
 export async function getAbout() {
-  const { data } = await client.queries.about({ relativePath: "about.json" });
+  const { data } = await queries.about({ relativePath: "about.json" });
   return data.about;
 }
 
 /** The FAQ page (content/pages/faq.json). */
 export async function getFaq() {
-  const { data } = await client.queries.faq({ relativePath: "faq.json" });
+  const { data } = await queries.faq({ relativePath: "faq.json" });
   return data.faq;
 }
 
 /** The privacy policy (content/pages/privacy.json). */
 export async function getPrivacy() {
-  const { data } = await client.queries.privacy({
+  const { data } = await queries.privacy({
     relativePath: "privacy.json",
   });
   return data.privacy;
