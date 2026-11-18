@@ -1,0 +1,13 @@
+{
+  "name": "2 Core Monument",
+  "sku": "CMD107",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "An oval frame enclosing a carved figure of the Virgin Mary, beside a lettered tablet. A graceful expression of faith.",
+  "sizes": [
+    "Die: 30\"w x 8\"d x 30\"h",
+    "Base: 36\"w x 12\"d x 6\"h"
+  ],
+  "image": "/uploads/stones/CMD107.webp",
+  "imageAlt": "2 Core Monument, cremation memorial"
+}

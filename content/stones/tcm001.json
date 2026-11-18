@@ -1,0 +1,16 @@
+{
+  "name": "1 Niche Bench",
+  "sku": "TCM001",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A traditional bench with a niche beneath the seat that holds urns behind removable panels. Its polished front panel carries names and dates.",
+  "sizes": [
+    "Bench: 48\"w x 14\"d x 4\"h",
+    "Legs (2): 4\"w x 12\"d x 12\"h",
+    "Panels (2): 37\"w x 0.75\"d x 12\"h",
+    "Base: 48\"w x 14\"d x 4\"h",
+    "Niche Size: 36\"w x 12\"d x 12\"h"
+  ],
+  "image": "/uploads/stones/TCM001.webp",
+  "imageAlt": "1 Niche Bench, cremation memorial"
+}

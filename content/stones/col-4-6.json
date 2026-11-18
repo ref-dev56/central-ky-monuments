@@ -1,0 +1,14 @@
+{
+  "name": "6 Niche Columbarium",
+  "sku": "COL-4_6",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A taller columbarium with three stacked niches per side, each sealed by a polished front panel. A space-efficient choice for families.",
+  "sizes": [
+    "Overall: 35.5\"w x 21\"d x 47\"h",
+    "Base: 35.5\"w x 21\"d x 4\"h",
+    "Niche Size: 12\"w x 12\"d x 12\"h"
+  ],
+  "image": "/uploads/stones/COL-4_6.webp",
+  "imageAlt": "6 Niche Columbarium, cremation memorial"
+}

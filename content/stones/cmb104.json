@@ -1,0 +1,15 @@
+{
+  "name": "2 Core Bench",
+  "sku": "CMB104",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A central upright framed by two bench seats on pedestals, each with a core for cremated remains. A symmetrical, contemporary companion design.",
+  "sizes": [
+    "Die: 48\"w x 8\"d x 48\"h",
+    "Seats (2): 17\"w x 14\"d x 4\"h",
+    "Pedestals (2): 10\"w x 10\"d x 14\"h",
+    "Base: 70\"w x 16\"d x 8\"h"
+  ],
+  "image": "/uploads/stones/CMB104.webp",
+  "imageAlt": "2 Core Bench, cremation memorial"
+}

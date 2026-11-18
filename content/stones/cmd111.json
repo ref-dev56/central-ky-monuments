@@ -1,0 +1,14 @@
+{
+  "name": "1 Niche Columbarium",
+  "sku": "CMD111",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A seated angel carved beside a lettered tablet, with a niche for urns within. A serene, sculptural tribute.",
+  "sizes": [
+    "Overall: 44\"w x 18\"d x 48\"h",
+    "Base: 48\"w x 20\"d x 4\"h",
+    "Niche Size: 24\"w x 14\"d x 12\"h"
+  ],
+  "image": "/uploads/stones/CMD111.webp",
+  "imageAlt": "1 Niche Columbarium, cremation memorial"
+}

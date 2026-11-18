@@ -1,0 +1,14 @@
+{
+  "name": "2 Niche Columbarium",
+  "sku": "CMD103",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A two-niche columbarium with a carved mourning angel leaning over the family name. A deeply moving tribute that holds two urns.",
+  "sizes": [
+    "Overall: 51\"w x 24\"d x 62\"h",
+    "Base: 52\"w x 24\"d x 6\"h",
+    "Niche Size: 20\"w x 18\"d x 18\"h"
+  ],
+  "image": "/uploads/stones/CMD103.webp",
+  "imageAlt": "2 Niche Columbarium, cremation memorial"
+}

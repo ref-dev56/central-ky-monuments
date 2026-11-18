@@ -1,0 +1,17 @@
+{
+  "name": "1 Niche Bench",
+  "sku": "CMB100",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "An upright memorial with a carved dove, paired with a bench whose base hides a niche for urns. It offers a place to sit and remember.",
+  "sizes": [
+    "Die: 30\"w x 8\"d x 44\"h",
+    "Bench: 43\"w x 14\"d x 4\"h",
+    "Base: 90\"w x 16\"d x 8\"h",
+    "Legs (2): 6\"w x 12\"d x 12\"h",
+    "Panels (2): 32\"d x 0.75\"d x 12\"h",
+    "Niche Size: 32\"w x 11\"d x 12\"h"
+  ],
+  "image": "/uploads/stones/CMB100.webp",
+  "imageAlt": "1 Niche Bench, cremation memorial"
+}

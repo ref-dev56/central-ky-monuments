@@ -1,0 +1,14 @@
+{
+  "name": "2 Core Pedestal",
+  "sku": "CMST103",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A carved resting cherub atop a tall pedestal with two cores for remains. A tender tribute, especially for a child.",
+  "sizes": [
+    "Statue: 30\"w x 12\"d x 20\"h",
+    "Pedestal: 14\"w x 14\"d x 24\"h",
+    "Base: 24\"w x 14\"d x 8\"h"
+  ],
+  "image": "/uploads/stones/CMST103.webp",
+  "imageAlt": "2 Core Pedestal, cremation memorial"
+}

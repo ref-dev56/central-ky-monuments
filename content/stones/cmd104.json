@@ -1,0 +1,14 @@
+{
+  "name": "2 Core Monument",
+  "sku": "CMD104",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A carved angel holding flowers rises above a lettered die with cores for two. A comforting, timeless tribute.",
+  "sizes": [
+    "Angel: 28\"w x 16\"d x 36\"h",
+    "Die: 30\"w x 20\"d x 10\"h",
+    "Base: 32\"w x 24\"d x 8\"h"
+  ],
+  "image": "/uploads/stones/CMD104.webp",
+  "imageAlt": "2 Core Monument, cremation memorial"
+}

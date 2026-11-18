@@ -1,0 +1,13 @@
+{
+  "name": "2 Core Monument",
+  "sku": "CMST101",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A full-height carved statue of the Virgin Mary in prayer, standing on a base with two cores for remains.",
+  "sizes": [
+    "Statue: 18\"w x 12\"d x 60\"h",
+    "Base: 24\"w x 16\"d x 10\"h"
+  ],
+  "image": "/uploads/stones/CMST101.webp",
+  "imageAlt": "2 Core Monument, cremation memorial"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "2 Niche Columbarium",
+  "sku": "COL-1",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A compact two-niche columbarium with stacked niches, a peaked cap, and a rock-pitch base. Ideal for a couple or a small family plot.",
+  "sizes": [
+    "Overall: 30\"w x 17\"d x 37.5\"h",
+    "Base: 30\"w x 17\"d x 6\"h",
+    "Niche Size: 12\"w x 12\"d x 12\"h"
+  ],
+  "image": "/uploads/stones/COL-1.webp",
+  "imageAlt": "2 Niche Columbarium, cremation memorial"
+}

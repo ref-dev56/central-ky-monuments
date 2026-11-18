@@ -1,0 +1,14 @@
+{
+  "name": "2 Core Monument",
+  "sku": "CMD100",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A carved resting lamb beneath a scroll-carved cap, a gentle symbol of innocence and peace. It holds two sets of remains.",
+  "sizes": [
+    "Cap: 16\"w x 8\"d x 4.5\"h",
+    "Die: 20\"w x 13\"d x 16\"h",
+    "Base: 26\"w x 18\"d x 6\"h"
+  ],
+  "image": "/uploads/stones/CMD100.webp",
+  "imageAlt": "2 Core Monument, cremation memorial"
+}
