@@ -5,6 +5,7 @@ import CategoryTabs from "@/components/CategoryTabs";
 import ContactBand from "@/components/ContactBand";
 import Gallery from "@/components/Gallery";
 import ServiceAreas from "@/components/ServiceAreas";
+import { AreasProvider, AreasToggleLink } from "@/components/AreasExpand";
 import {
   getCategories,
   getColors,
@@ -53,71 +54,73 @@ export default async function Home() {
 
   return (
     <main className="flex flex-1 flex-col">
-      {/* Photo hero */}
-      <section className="relative isolate overflow-hidden bg-ink">
-        {home.heroImage && (
-          <Image
-            src={home.heroImage}
-            alt=""
-            fill
-            preload
-            sizes="100vw"
-            className={`-z-10 object-cover ${HERO_FOCUS[home.heroFocus ?? "center"] ?? HERO_FOCUS.center}`}
+      <AreasProvider>
+        {/* Photo hero */}
+        <section className="relative isolate overflow-hidden bg-ink">
+          {home.heroImage && (
+            <Image
+              src={home.heroImage}
+              alt=""
+              fill
+              preload
+              sizes="100vw"
+              className={`-z-10 object-cover ${HERO_FOCUS[home.heroFocus ?? "center"] ?? HERO_FOCUS.center}`}
+            />
+          )}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 bg-ink/55"
           />
-        )}
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-ink/55" />
-        <div className="mx-auto flex min-h-[420px] max-w-6xl flex-col justify-end gap-4 px-4 pb-12 pt-24 sm:min-h-[540px] sm:px-6 sm:pb-16">
-          {customEyebrow ? (
-            <p className="text-sm font-medium tracking-wide text-sage-tint">
-              {customEyebrow}
-            </p>
-          ) : (
-            towns.length > 0 && (
-              <p className="max-w-3xl text-sm font-medium tracking-wide text-sage-tint">
-                {/* "Serving Lexington, Louisville, …, and the surrounding communities" */}
-                Serving{" "}
-                {moreLink ? (
-                  <>
-                    {named.join(", ")}, and{" "}
-                    <a
-                      href="#areas"
-                      className="underline decoration-sage-tint/60 underline-offset-4 hover:text-white"
-                    >
-                      {moreLink}
-                    </a>
-                  </>
-                ) : named.length > 1 ? (
-                  `${named.slice(0, -1).join(", ")} and ${named.at(-1)}`
-                ) : (
-                  named[0]
-                )}
+          <div className="mx-auto flex min-h-[420px] max-w-6xl flex-col justify-end gap-4 px-4 pb-12 pt-24 sm:min-h-[540px] sm:px-6 sm:pb-16">
+            {customEyebrow ? (
+              <p className="text-sm font-medium tracking-wide text-sage-tint">
+                {customEyebrow}
               </p>
-            )
-          )}
-          <h1 className="max-w-3xl font-serif text-[44px] font-semibold leading-[1.02] text-white sm:text-[64px]">
-            {home.heroHeadline || settings.businessName}
-          </h1>
-          {home.heroIntro && (
-            <p className="max-w-xl text-lg leading-relaxed text-stone">
-              {home.heroIntro}
-            </p>
-          )}
-          <div className="mt-2 flex flex-wrap items-center gap-6">
-            <a
-              href="#designs"
-              className="inline-flex min-h-[50px] items-center rounded-md bg-ivory px-6 font-medium text-ink hover:bg-white"
-            >
-              {home.primaryButton || "Browse designs"}
-            </a>
-            <Link
-              href="/request-information/"
-              className="font-medium text-white underline-offset-4 hover:underline"
-            >
-              {home.secondaryButton || "Talk with us"}
-            </Link>
+            ) : (
+              towns.length > 0 && (
+                <p className="max-w-3xl text-sm font-medium tracking-wide text-sage-tint">
+                  {/* "Serving Lexington, Louisville, …, and the surrounding communities" */}
+                  Serving{" "}
+                  {moreLink ? (
+                    <>
+                      {named.join(", ")}, and{" "}
+                      <AreasToggleLink>{moreLink}</AreasToggleLink>
+                    </>
+                  ) : named.length > 1 ? (
+                    `${named.slice(0, -1).join(", ")} and ${named.at(-1)}`
+                  ) : (
+                    named[0]
+                  )}
+                </p>
+              )
+            )}
+            <h1 className="max-w-3xl font-serif text-[44px] font-semibold leading-[1.02] text-white sm:text-[64px]">
+              {home.heroHeadline || settings.businessName}
+            </h1>
+            {home.heroIntro && (
+              <p className="max-w-xl text-lg leading-relaxed text-stone">
+                {home.heroIntro}
+              </p>
+            )}
+            <div className="mt-2 flex flex-wrap items-center gap-6">
+              <a
+                href="#designs"
+                className="inline-flex min-h-[50px] items-center rounded-md bg-ivory px-6 font-medium text-ink hover:bg-white"
+              >
+                {home.primaryButton || "Browse designs"}
+              </a>
+              <Link
+                href="/request-information/"
+                className="font-medium text-white underline-offset-4 hover:underline"
+              >
+                {home.secondaryButton || "Talk with us"}
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <ServiceAreas collapsible />
+      </AreasProvider>
 
       {/* Category tabs + collage */}
       <div
@@ -140,7 +143,6 @@ export default async function Home() {
       </div>
 
       <ContactBand />
-      <ServiceAreas />
     </main>
   );
 }
