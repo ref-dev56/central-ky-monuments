@@ -1,0 +1,14 @@
+{
+  "name": "2 Core Monument",
+  "sku": "CMO106",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A pagoda-roofed monument with a decorative crest, with round columns framing a tall polished die.",
+  "sizes": [
+    "Roof: 36\"w x 14\"d x 12\"h",
+    "Die: 28\"w x 8\"d x 28\"h",
+    "Base: 36\"w x 14\"d x 6\"h"
+  ],
+  "image": "/uploads/stones/CMO106.webp",
+  "imageAlt": "2 Core Monument, cremation memorial"
+}

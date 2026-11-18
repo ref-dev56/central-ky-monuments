@@ -1,0 +1,13 @@
+{
+  "name": "2 Core Monument",
+  "sku": "CMD117",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A rounded upright with a carved standing figure of Christ along one side, set on a base with two cores.",
+  "sizes": [
+    "Die: 36\"w x 8\"d x 36\"h",
+    "Base: 48\"w x 14\"d x 10\"h"
+  ],
+  "image": "/uploads/stones/CMD117.webp",
+  "imageAlt": "2 Core Monument, cremation memorial"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "2 Core Bench",
+  "sku": "TCM003",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A lettered bench seat resting on a shaped pedestal with two cores for remains. A classic design with room for an etched scene.",
+  "sizes": [
+    "Bench: 48\"w x 14\"d x 4\"h",
+    "Pedestal: 42\"w x 8\"d x 14\"h"
+  ],
+  "image": "/uploads/stones/TCM003.webp",
+  "imageAlt": "2 Core Bench, cremation memorial"
+}

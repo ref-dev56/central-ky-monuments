@@ -1,0 +1,14 @@
+{
+  "name": "2 Core Post",
+  "sku": "CMCS103",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "An intricately carved Celtic cross with traditional knotwork, set on a sub-base above a base with two cores.",
+  "sizes": [
+    "Cross: 18\"w x 8\"d x 32\"h",
+    "Sub-Base: 20\"w x 12\"d x 3\"h",
+    "Base: 30\"w x 14\"d x 10\"h"
+  ],
+  "image": "/uploads/stones/CMCS103.webp",
+  "imageAlt": "2 Core Post, cremation memorial"
+}

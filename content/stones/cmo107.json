@@ -1,0 +1,14 @@
+{
+  "name": "6 Core Monument",
+  "sku": "CMO107",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A wide monument beneath a gently curved pagoda-style roof, with side columns and six cores for remains. Room for an entire family.",
+  "sizes": [
+    "Roof: 60\"w x 14\"d x 8\"h",
+    "Die: 48\"w x 11\"d x 30\"h",
+    "Base: 64\"w x 14\"d x 8\"h"
+  ],
+  "image": "/uploads/stones/CMO107.webp",
+  "imageAlt": "6 Core Monument, cremation memorial"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "2 Core Monument",
+  "sku": "CMO104",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "An Asian-inspired monument with a sweeping pagoda roof, curved wings, and a round moon-gate opening at its center.",
+  "sizes": [
+    "Roof: 50\"w x 12\"d x 11\"h",
+    "Supports (2): 8\"w x 8\"d x 30\"h",
+    "Die: 18\"w x 6\"d x 30\"h",
+    "Wings (2): 13\"w x 10\"d x 27\"h",
+    "Base: 76\"w x 14\"d x 8\"h"
+  ],
+  "image": "/uploads/stones/CMO104.webp",
+  "imageAlt": "2 Core Monument, cremation memorial"
+}

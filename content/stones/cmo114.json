@@ -1,0 +1,16 @@
+{
+  "name": "2 Core Monument",
+  "sku": "CMO114",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A pagoda-style monument with a ball-topped tiered roof, four slender pillars, and gated side wings.",
+  "sizes": [
+    "Roof: 34\"w x 18\"d x 13.5\"h",
+    "Die: 18\"w x 8\"d x 30\"h",
+    "Pillars (4): 4.5\"w x 4.5\"d x 30\"h",
+    "Wings (2): 7\"w x 5\"d x 27\"h",
+    "Base: 36\"w x 20\"d x 6\"h"
+  ],
+  "image": "/uploads/stones/CMO114.webp",
+  "imageAlt": "2 Core Monument, cremation memorial"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "48 Niche Columbarium",
+  "sku": "COL-9",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A wide columbarium with a grid of niches, framed by rounded column ends and a solid cap. A refined centerpiece for a community memorial space.",
+  "sizes": [
+    "Overall: 108\"w x 36\"d x 64\"h",
+    "Base: 108\"w x 36\"d x 6\"h",
+    "Niche Size: 12\"w x 12\"d x 12\"h"
+  ],
+  "image": "/uploads/stones/COL-9.webp",
+  "imageAlt": "48 Niche Columbarium, cremation memorial"
+}

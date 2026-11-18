@@ -1,0 +1,14 @@
+{
+  "name": "6 Niche Columbarium",
+  "sku": "CMO109",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A low, wide columbarium with six niches beneath a curved pagoda-style roof, set on a rock-pitch base.",
+  "sizes": [
+    "Overall: 60\"w x 18\"d x 35\"h",
+    "Base: 72\"w x 18\"d x 8\"h",
+    "Niche Size: 12\"w x 12\"d x 12\"h"
+  ],
+  "image": "/uploads/stones/CMO109.webp",
+  "imageAlt": "6 Niche Columbarium, cremation memorial"
+}

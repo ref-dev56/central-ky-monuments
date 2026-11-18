@@ -1,0 +1,14 @@
+{
+  "name": "64 Niche Columbarium",
+  "sku": "COL-7",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A large, wall-style columbarium with a uniform grid of niches across both faces. Designed for cemeteries, churches, and memorial gardens.",
+  "sizes": [
+    "Overall: 114.5\"w x 33.5\"d x 62.5\"h",
+    "Base: 114\"w x 33.5\"d x 6\"h",
+    "Niche Size: 12\"w x 12\"d x 12\"h"
+  ],
+  "image": "/uploads/stones/COL-7.webp",
+  "imageAlt": "64 Niche Columbarium, cremation memorial"
+}
