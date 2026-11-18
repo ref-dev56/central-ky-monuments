@@ -17,8 +17,11 @@
     "Mon–Fri 8am–4pm"
   ],
   "serviceArea": [
-    "Frankfort",
     "Lexington",
+    "Louisville",
+    "Georgetown",
+    "Frankfort",
+    "Richmond",
     "Harrodsburg",
     "Shelbyville",
     "Bardstown",
@@ -26,13 +29,19 @@
     "Lebanon",
     "Hodgenville",
     "Lawrenceburg",
-    "Richmond",
     "Berea",
     "Cynthiana",
     "New Castle",
     "Eminence",
-    "Georgetown"
+    "Versailles",
+    "Owenton",
+    "Carrollton",
+    "Paris"
   ],
+  "serviceAreaBand": {
+    "heading": "Areas we serve",
+    "intro": "We work with families across Central Kentucky, including these communities and the surrounding counties."
+  },
   "social": [],
   "colors": {
     "intro": "Every design is available in each of these colors. Choose one to include it with your request.",

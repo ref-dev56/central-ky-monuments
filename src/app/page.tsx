@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment } from "react";
 import CategoryTabs from "@/components/CategoryTabs";
 import ContactBand from "@/components/ContactBand";
 import Gallery from "@/components/Gallery";
+import ServiceAreas from "@/components/ServiceAreas";
 import {
   getCategories,
   getColors,
@@ -42,8 +42,14 @@ export default async function Home() {
     getColors(),
   ]);
   const towns = present(settings.serviceArea);
-  // Typed text in the CMS wins; blank = list the towns from the service area.
+  // Typed text in the CMS wins; blank = "Serving" + the first few towns in
+  // Site settings → Service area + a link to the full list at the bottom.
   const customEyebrow = home.heroEyebrow?.trim();
+  const named = towns.slice(0, Math.max(1, home.heroTownCount ?? 5));
+  const moreLink =
+    towns.length > named.length
+      ? home.heroTownsLink?.trim() || "the surrounding communities"
+      : null;
 
   return (
     <main className="flex flex-1 flex-col">
@@ -67,28 +73,24 @@ export default async function Home() {
             </p>
           ) : (
             towns.length > 0 && (
-              <p className="text-sm font-medium tracking-wide text-sage-tint">
-                {/* "Frankfort · Lexington · …"; screen readers hear "Serving Frankfort, Lexington, …" */}
-                <span className="sr-only">Serving </span>
-                {towns.map((town, i) => (
-                  <Fragment key={town}>
-                    {/* Each town stays with its dot; the line wraps between towns */}
-                    <span className="whitespace-nowrap">
-                      {town}
-                      {i < towns.length - 1 && (
-                        <>
-                          <span className="sr-only">,</span>
-                          <span
-                            aria-hidden="true"
-                            className="ml-2 mr-1 opacity-70"
-                          >
-                            ·
-                          </span>
-                        </>
-                      )}
-                    </span>{" "}
-                  </Fragment>
-                ))}
+              <p className="max-w-3xl text-sm font-medium tracking-wide text-sage-tint">
+                {/* "Serving Lexington, Louisville, …, and the surrounding communities" */}
+                Serving{" "}
+                {moreLink ? (
+                  <>
+                    {named.join(", ")}, and{" "}
+                    <a
+                      href="#areas"
+                      className="underline decoration-sage-tint/60 underline-offset-4 hover:text-white"
+                    >
+                      {moreLink}
+                    </a>
+                  </>
+                ) : named.length > 1 ? (
+                  `${named.slice(0, -1).join(", ")} and ${named.at(-1)}`
+                ) : (
+                  named[0]
+                )}
               </p>
             )
           )}
@@ -138,6 +140,7 @@ export default async function Home() {
       </div>
 
       <ContactBand />
+      <ServiceAreas />
     </main>
   );
 }

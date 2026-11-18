@@ -26,7 +26,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const [settings, home] = await Promise.all([getSettings(), getHome()]);
 
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" data-scroll-behavior="smooth" className="h-full antialiased">
       <body className="flex min-h-full flex-col bg-ivory font-sans text-ink">
         {/* Lets keyboard users jump past the header */}
         <a
