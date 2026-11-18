@@ -5,6 +5,7 @@ import { Fragment } from "react";
 import CategoryTabs from "@/components/CategoryTabs";
 import ContactBand from "@/components/ContactBand";
 import Gallery from "@/components/Gallery";
+import ServiceAreas from "@/components/ServiceAreas";
 import {
   getCategories,
   getColors,
@@ -41,7 +42,15 @@ export default async function Home() {
     getGalleryStones(),
     getColors(),
   ]);
-  const towns = present(settings.serviceArea);
+  // MOCKUP ONLY: MOCK_AREAS picks the banner option, MOCK_EXTRA_TOWNS adds sample towns.
+  const MOCK = process.env.MOCK_AREAS ?? "2";
+  const towns = [
+    ...present(settings.serviceArea),
+    ...(process.env.MOCK_EXTRA_TOWNS
+      ? ["Versailles", "Nicholasville", "Danville", "Winchester", "Paris", "Mount Sterling", "Midway", "Springfield", "Stanford", "Carlisle"]
+      : []),
+  ];
+  const ANCHORS = 3;
   // Typed text in the CMS wins; blank = list the towns from the service area.
   const customEyebrow = home.heroEyebrow?.trim();
 
@@ -61,34 +70,33 @@ export default async function Home() {
         )}
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-ink/55" />
         <div className="mx-auto flex min-h-[420px] max-w-6xl flex-col justify-end gap-4 px-4 pb-12 pt-24 sm:min-h-[540px] sm:px-6 sm:pb-16">
-          {customEyebrow ? (
+          {MOCK === "1" ? (
             <p className="text-sm font-medium tracking-wide text-sage-tint">
-              {customEyebrow}
+              {customEyebrow || "Serving Central Kentucky"}
             </p>
           ) : (
             towns.length > 0 && (
               <p className="text-sm font-medium tracking-wide text-sage-tint">
-                {/* "Frankfort · Lexington · …"; screen readers hear "Serving Frankfort, Lexington, …" */}
                 <span className="sr-only">Serving </span>
-                {towns.map((town, i) => (
+                {towns.slice(0, ANCHORS).map((town) => (
                   <Fragment key={town}>
-                    {/* Each town stays with its dot; the line wraps between towns */}
                     <span className="whitespace-nowrap">
                       {town}
-                      {i < towns.length - 1 && (
-                        <>
-                          <span className="sr-only">,</span>
-                          <span
-                            aria-hidden="true"
-                            className="ml-2 mr-1 opacity-70"
-                          >
-                            ·
-                          </span>
-                        </>
-                      )}
+                      <span className="sr-only">,</span>
+                      <span aria-hidden="true" className="ml-2 mr-1 opacity-70">
+                        ·
+                      </span>
                     </span>{" "}
                   </Fragment>
                 ))}
+                {towns.length > ANCHORS && (
+                  <a
+                    href="#areas"
+                    className="whitespace-nowrap underline decoration-sage-tint/60 underline-offset-4 hover:text-white"
+                  >
+                    and {towns.length - ANCHORS} more communities
+                  </a>
+                )}
               </p>
             )
           )}
@@ -116,6 +124,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      <ServiceAreas towns={towns} phone={settings.phone} />
 
       {/* Category tabs + collage */}
       <div
