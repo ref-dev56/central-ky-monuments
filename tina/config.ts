@@ -420,8 +420,6 @@ export default defineConfig({
             description: "Leave a blank line between paragraphs.",
             ui: { component: "textarea" },
           },
-          { type: "string", name: "ctaPersonName", label: "Closing section: person's name" },
-          { type: "string", name: "ctaPersonTitle", label: "Closing section: person's title" },
           { type: "string", name: "ctaButton", label: "Closing section: button text" },
           { type: "image", name: "ctaPhoto", label: "Closing section: photo (right side)" },
           { type: "string", name: "ctaPhotoAlt", label: "Closing section: photo description (for screen readers)" },

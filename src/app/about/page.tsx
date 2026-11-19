@@ -123,16 +123,6 @@ export default async function AboutPage() {
                 {p}
               </p>
             ))}
-            {about.ctaPersonName && (
-              <p className="flex flex-col">
-                <span className="font-serif text-[22px] font-semibold text-ink">
-                  {about.ctaPersonName}
-                </span>
-                {about.ctaPersonTitle && (
-                  <span className="text-sm text-muted">{about.ctaPersonTitle}</span>
-                )}
-              </p>
-            )}
             <div className="flex flex-wrap items-center gap-x-5 gap-y-3 pt-1">
               <Link
                 href="/request-information/"
