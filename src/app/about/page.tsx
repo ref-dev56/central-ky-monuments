@@ -144,7 +144,7 @@ export default async function AboutPage() {
                 alt={about.ctaPhotoAlt ?? ""}
                 fill
                 sizes="(min-width: 768px) 560px, 100vw"
-                className="object-cover object-[50%_30%]"
+                className="object-cover object-[50%_60%]"
               />
             </div>
           )}
