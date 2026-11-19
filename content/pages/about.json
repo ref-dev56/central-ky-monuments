@@ -22,6 +22,12 @@
   ],
   "serviceHeading": "Where we serve",
   "serviceIntro": "We serve families throughout Central Kentucky, including these communities and the surrounding counties. If your cemetery is farther away, just ask.",
+  "ctaEyebrow": "Meet our Director of Sales",
   "ctaHeading": "We're here when you're ready",
-  "ctaText": "Call us or send a note, and we'll help you take the next step."
+  "ctaText": "When you reach out, you'll work with [Name], our Director of Sales. From the first phone call to the day your memorial is set, [Name] will walk you through designs, granite colors and lettering, answer your questions, and coordinate with the cemetery so you don't have to.\n\nThere's never any pressure. Call or send a note whenever you're ready, and we'll take the next step together.",
+  "ctaPersonName": "[Name]",
+  "ctaPersonTitle": "Director of Sales",
+  "ctaButton": "Request information",
+  "ctaPhoto": "/uploads/director-of-sales.jpg",
+  "ctaPhotoAlt": "[Name], Director of Sales at Central Kentucky Monuments"
 }
