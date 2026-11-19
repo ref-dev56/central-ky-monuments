@@ -29,3 +29,10 @@
   --font-sans: "Inter Variable", system-ui, sans-serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
 }
+
+/* Smooth scrolling for in-page links (e.g. banner → Areas we serve). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

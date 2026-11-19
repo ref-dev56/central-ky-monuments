@@ -10,7 +10,7 @@ const footerLinks = [
 ];
 
 export default function SiteFooter({ settings }: { settings: Settings }) {
-  const { businessName, legalName, logo, phone, email, address, hours, serviceArea, social } =
+  const { businessName, legalName, logo, phone, email, address, hours, social } =
     settings;
   const socialLinks = (social ?? []).flatMap((s) =>
     s?.label && s?.url ? [{ label: s.label, url: s.url }] : [],
@@ -21,7 +21,6 @@ export default function SiteFooter({ settings }: { settings: Settings }) {
         .filter(Boolean)
         .join(", ")
     : "";
-  const towns = (serviceArea ?? []).filter(Boolean);
   const year = new Date().getFullYear();
 
   return (
@@ -42,11 +41,6 @@ export default function SiteFooter({ settings }: { settings: Settings }) {
             Helping families honor and remember their loved ones with granite
             memorials made to last generations.
           </p>
-          {towns.length > 0 && (
-            <p className="text-sm leading-relaxed text-muted">
-              Serving {towns.join(", ")} and surrounding counties.
-            </p>
-          )}
         </div>
 
         <div className="flex flex-col gap-1.5 text-[15px] leading-relaxed">

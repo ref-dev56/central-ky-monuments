@@ -87,3 +87,11 @@ export function CheckIcon(props: IconProps) {
     </Svg>
   );
 }
+
+export function ChevronDownIcon(props: IconProps) {
+  return (
+    <Svg strokeWidth={2} {...props}>
+      <path d="M6 9l6 6 6-6" />
+    </Svg>
+  );
+}

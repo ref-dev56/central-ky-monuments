@@ -20,7 +20,7 @@ export default async function AboutPage() {
   const [about, settings] = await Promise.all([getAbout(), getSettings()]);
   const paragraphs = (about.story ?? "").split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
   const steps = present(about.steps);
-  const towns = present(settings.serviceArea);
+  const towns = present(settings.serviceArea).sort((a, b) => a.localeCompare(b));
   const photo = about.photo ? { src: about.photo, ...readImageSize(about.photo) } : null;
 
   return (

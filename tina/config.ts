@@ -271,7 +271,21 @@ export default defineConfig({
             name: "heroEyebrow",
             label: "Small line above the headline",
             description:
-              "Leave blank to list the towns from Site settings → Service area automatically (Frankfort · Lexington · …).",
+              "Leave blank to build it from Site settings → Service area: “Serving Lexington, Louisville, …, and the surrounding communities”. Anything typed here replaces that line.",
+          },
+          {
+            type: "number",
+            name: "heroTownCount",
+            label: "Towns to name in that line",
+            description:
+              "How many towns from the top of Site settings → Service area to name. Reorder that list to change which ones. Default 5.",
+          },
+          {
+            type: "string",
+            name: "heroTownsLink",
+            label: "Link text after the towns",
+            description:
+              "Links to the full list of towns at the bottom of the page. Default: the surrounding communities",
           },
           {
             type: "string",
@@ -535,7 +549,24 @@ export default defineConfig({
             type: "string",
             name: "serviceArea",
             label: "Service area (towns and counties)",
+            description:
+              "The first towns in this list are named in the homepage banner. Everywhere else the list is shown A–Z.",
             list: true,
+          },
+          {
+            type: "object",
+            name: "serviceAreaBand",
+            label: "Areas we serve band",
+            description: "Shown near the bottom of the homepage and each category page.",
+            fields: [
+              { type: "string", name: "heading", label: "Heading" },
+              {
+                type: "string",
+                name: "intro",
+                label: "Intro text",
+                ui: { component: "textarea" },
+              },
+            ],
           },
           {
             type: "object",

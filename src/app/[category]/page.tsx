@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import CategoryTabs from "@/components/CategoryTabs";
 import ContactBand from "@/components/ContactBand";
+import ServiceAreas from "@/components/ServiceAreas";
 import Gallery from "@/components/Gallery";
 import PageIntro from "@/components/PageIntro";
 import {
@@ -71,6 +72,7 @@ export default async function CategoryPage(props: PageProps<"/[category]">) {
       </div>
 
       <ContactBand />
+      <ServiceAreas />
     </main>
   );
 }
