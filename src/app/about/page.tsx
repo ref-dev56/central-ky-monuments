@@ -83,19 +83,20 @@ export default async function AboutPage() {
 
       {/* Where we serve */}
       {towns.length > 0 && (
-        <section className="mx-auto flex w-full max-w-6xl flex-wrap items-start gap-12 px-4 py-14 sm:px-6 sm:py-16">
-          <div className="flex flex-[1_1_420px] flex-col gap-4">
+        <section className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-14 sm:px-6 sm:py-16">
+          <div className="flex flex-col gap-4">
             <h2 className="font-serif text-[34px] font-semibold leading-tight">
               {about.serviceHeading || "Where we serve"}
             </h2>
             {about.serviceIntro && (
-              <p className="max-w-xl text-[17px] leading-relaxed text-body">{about.serviceIntro}</p>
+              <p className="max-w-3xl text-[17px] leading-relaxed text-body">{about.serviceIntro}</p>
             )}
           </div>
-          <ul className="grid flex-[1_1_420px] grid-cols-2 gap-x-6 gap-y-3 rounded-xl bg-sage-tint p-7 text-[17px]">
+          {/* A–Z down each column, then across: 2 columns on phones, 3 on tablets, 4 on desktop */}
+          <ul className="columns-2 gap-x-6 rounded-xl bg-sage-tint p-7 text-[17px] sm:columns-3 lg:columns-4">
             {towns.map((town) => (
-              <li key={town} className="flex items-center gap-2.5">
-                <span aria-hidden="true" className="size-1.5 rounded-full bg-sage" />
+              <li key={town} className="flex break-inside-avoid items-center gap-2.5 py-1.5">
+                <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-sage" />
                 {town}
               </li>
             ))}
