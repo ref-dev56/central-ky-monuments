@@ -1,0 +1,14 @@
+{
+  "name": "2 Core Monument",
+  "sku": "CMCS100",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A cross with carved floral detail, set on a sub-base above a base with two cores for remains.",
+  "sizes": [
+    "Cross: 18\"w x 8\"d x 28\"h",
+    "Sub-Base: 20\"w x 12\"d x 3\"h",
+    "Base: 30\"w x 14\"d x 10\"h"
+  ],
+  "image": "/uploads/stones/CMCS100.webp",
+  "imageAlt": "2 Core Monument, cremation memorial"
+}

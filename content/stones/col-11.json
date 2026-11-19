@@ -1,0 +1,14 @@
+{
+  "name": "72 Niche Columbarium",
+  "sku": "COL-11",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A multi-sided columbarium with fluted columns framing tall banks of niches on every face. A dignified, high-capacity design.",
+  "sizes": [
+    "Overall: 83.5\"w x 78.5\"d x 86\"h",
+    "Base: 83.5\"w x 78.5\"d x 4\"h",
+    "Niche Size: 12\"w x 12\"d x 12\"h"
+  ],
+  "image": "/uploads/stones/COL-11.webp",
+  "imageAlt": "72 Niche Columbarium, cremation memorial"
+}

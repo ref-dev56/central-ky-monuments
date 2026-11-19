@@ -1,0 +1,14 @@
+{
+  "name": "4 Niche Columbarium",
+  "sku": "COL-3",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A four-niche columbarium with a two-by-two arrangement of niche fronts beneath a peaked cap. Its balanced, classic form suits any setting.",
+  "sizes": [
+    "Overall: 32\"w x 18\"d x 37.5\"h",
+    "Base: 32\"w x 18\"d x 4\"h",
+    "Niches: 12\"w x 12\"d x 12\"h"
+  ],
+  "image": "/uploads/stones/COL-3.webp",
+  "imageAlt": "4 Niche Columbarium, cremation memorial"
+}

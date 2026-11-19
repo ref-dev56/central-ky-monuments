@@ -1,0 +1,14 @@
+{
+  "name": "1 Niche Columbarium",
+  "sku": "CMO115",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A single-niche columbarium with a broad curved roof and a niche large enough for several urns, set on a rock-pitch base.",
+  "sizes": [
+    "Overall: 42\"w x 14\"d x 24\"h",
+    "Base: 48\"w x 18\"d x 6\"h",
+    "Niche Size: 28\"w x 12\"d x 18\"h"
+  ],
+  "image": "/uploads/stones/CMO115.webp",
+  "imageAlt": "1 Niche Columbarium, cremation memorial"
+}

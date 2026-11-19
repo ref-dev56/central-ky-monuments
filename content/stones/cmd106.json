@@ -1,0 +1,14 @@
+{
+  "name": "1 Niche Columbarium",
+  "sku": "CMD106",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A low, single-niche columbarium with sculpted scroll ends and a polished front panel. Its niche can hold one or two urns.",
+  "sizes": [
+    "Overall: 28\"w x 13\"d x 16\"h",
+    "Base: 28\"w x 13\"d x 6\"h",
+    "Niche Size: 20\"w x 12\"d x 12\"h"
+  ],
+  "image": "/uploads/stones/CMD106.webp",
+  "imageAlt": "1 Niche Columbarium, cremation memorial"
+}

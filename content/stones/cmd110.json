@@ -1,0 +1,14 @@
+{
+  "name": "1 Core Monument",
+  "sku": "CMD110",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A slender post with a carved emblem rising from a lettered die and broad base. Simple, upright, and dignified.",
+  "sizes": [
+    "Post: 18\"w x 18\"d x 34\"h",
+    "Die: 24\"w x 24\"d x 10\"h",
+    "Base: 36\"w x 30\"d x 4\"h"
+  ],
+  "image": "/uploads/stones/CMD110.webp",
+  "imageAlt": "1 Core Monument, cremation memorial"
+}

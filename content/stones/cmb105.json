@@ -1,0 +1,16 @@
+{
+  "name": "3 Core Bench",
+  "sku": "CMB105",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "Two etched uprights flank a center bench, with built-in vases and three cores for remains. It is shown with scenic etchings and portrait plaques.",
+  "sizes": [
+    "Dies (2): 22\"w x 8\"d x 24\"h",
+    "Bench: 28\"w x 14\"d x 4\"h",
+    "Pedestal: 24\"w x 8\"d x 10\"h",
+    "Base: 84\"w x 14\"d x 8\"h",
+    "Vases (2): 8\"w x 10\"d x 8\"h"
+  ],
+  "image": "/uploads/stones/CMB105.webp",
+  "imageAlt": "3 Core Bench, cremation memorial"
+}

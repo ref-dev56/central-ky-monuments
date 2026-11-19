@@ -1,0 +1,14 @@
+{
+  "name": "108 Niche Columbarium",
+  "sku": "COL-15",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A high-capacity wall columbarium with a clean grid of 108 niches. Built for cemeteries and institutions serving many families.",
+  "sizes": [
+    "Overall: 128\"w x 33.5\"d x 89.5\"h",
+    "Base: 128\"w x 33.5\"d x 6\"h",
+    "Niche Size: 12\"w x 12\"d x 12\"h"
+  ],
+  "image": "/uploads/stones/COL-15.webp",
+  "imageAlt": "108 Niche Columbarium, cremation memorial"
+}

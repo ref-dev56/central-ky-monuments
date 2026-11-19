@@ -1,0 +1,15 @@
+{
+  "name": "4 Core Bench",
+  "sku": "CMB107",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "An upright with a sculpted tree carved along one side, joined to a bench with four cores for remains. A natural, peaceful design.",
+  "sizes": [
+    "Die: 33\"w x 10\"d x 48\"h",
+    "Bench: 34\"w x 14\"d x 4\"h",
+    "Pedestal: 32\"w x 10\"d x 14\"h",
+    "Base: 72\"w x 12\"d x 6\"h"
+  ],
+  "image": "/uploads/stones/CMB107.webp",
+  "imageAlt": "4 Core Bench, cremation memorial"
+}

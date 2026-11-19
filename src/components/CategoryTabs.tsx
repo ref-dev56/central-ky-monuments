@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ActiveTabScroller from "./ActiveTabScroller";
 
 type Props = {
   categories: { name: string; slug: string }[];
@@ -20,8 +21,9 @@ export default function CategoryTabs({ categories, active, align = "start" }: Pr
   return (
     <nav aria-label="Memorial categories" className="border-b border-border">
       <ul
-        className={`-mb-px flex gap-7 overflow-x-auto px-1 [scrollbar-width:none] ${
-          align === "center" ? "sm:justify-center" : ""
+        id="category-tabs"
+        className={`-mb-px flex gap-7 overflow-x-auto px-1 [scrollbar-width:none] xl:gap-4 ${
+          align === "center" ? "sm:justify-center" : "xl:justify-between"
         }`}
       >
         {tabs.map((tab) => {
@@ -43,6 +45,7 @@ export default function CategoryTabs({ categories, active, align = "start" }: Pr
           );
         })}
       </ul>
+      <ActiveTabScroller listId="category-tabs" />
     </nav>
   );
 }

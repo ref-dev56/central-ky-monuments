@@ -1,0 +1,16 @@
+{
+  "name": "2 Core Bench",
+  "sku": "CMB110",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A peaked-cap upright flanked by two bench seats on pedestals, each with a core for cremated remains. It rests on a rugged rock-pitch base.",
+  "sizes": [
+    "Cap: 26\"w x 10\"d x 7\"h",
+    "Die: 24\"w x 8\"d x 36\"h",
+    "Seats (2): 24\"w x 14\"d x 4\"h",
+    "Pedestals (2): 10\"w x 10\"d x 14\"h",
+    "Base: 76\"w x 16\"d x 8\"h"
+  ],
+  "image": "/uploads/stones/CMB110.webp",
+  "imageAlt": "2 Core Bench, cremation memorial"
+}

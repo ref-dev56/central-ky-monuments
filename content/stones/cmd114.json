@@ -1,0 +1,14 @@
+{
+  "name": "2 Core Monument",
+  "sku": "CMD114",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A carved birdbath topper with a perched dove, set on a pedestal with two cores for remains. A peaceful garden-style memorial.",
+  "sizes": [
+    "Carved Topper: 21\"w x 18\"d x 11\"h",
+    "Pedestal: 14\"w x 14\"d x 22\"h",
+    "Base: 36\"w x 24\"d x 6\"h"
+  ],
+  "image": "/uploads/stones/CMD114.webp",
+  "imageAlt": "2 Core Monument, cremation memorial"
+}

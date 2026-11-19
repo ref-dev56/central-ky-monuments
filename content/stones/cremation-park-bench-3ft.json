@@ -1,0 +1,18 @@
+{
+  "name": "3' Cremation Park Bench",
+  "sku": "CREMATION-PARK-BENCH-3FT",
+  "category": "content/categories/cremation.json",
+  "series": "Cremation",
+  "description": "A compact park-style bench with a backrest and an enclosed niche beneath the seat for urns. It offers a comfortable place to sit and visit.",
+  "sizes": [
+    "Back Rest: 36\"w x 2\"d x 13\"h",
+    "Bench: 36\"w x 20\"d x 2\"h",
+    "Legs (2): 2\"w x 20\"d x 28\"h",
+    "Back Wall: 24\"w x 2\"d x 4\"h",
+    "Panels (2): 25\"w x 0.75\"d x 14\"h",
+    "Base: 36\"w x 24\"d x 4\"h",
+    "Niche Size: 24\"w x 14\"d x 14\"h"
+  ],
+  "image": "/uploads/stones/CREMATION-PARK-BENCH-3FT.webp",
+  "imageAlt": "3' Cremation Park Bench, cremation memorial"
+}
