@@ -112,6 +112,10 @@ export function readImageSize(src: string) {
  * one bench, ...) so the collage mixes tall and wide shapes from the first
  * row instead of starting with a block of same-size uprights. Within a
  * category, stones are ordered by SKU so the layout is stable between builds.
+ *
+ * Stones with a "Show first" number come before all of that, lowest number
+ * first. Equal numbers are allowed: they're ordered by category (tab order)
+ * and then SKU, the same order they'd otherwise have.
  */
 export async function getGalleryStones(categorySlug?: string) {
   const [stones, categories] = await Promise.all([
@@ -119,8 +123,18 @@ export async function getGalleryStones(categorySlug?: string) {
     getCategories(),
   ]);
 
-  const shaped = stones
-    .filter((s) => !categorySlug || s.category.slug === categorySlug)
+  const filtered = stones.filter(
+    (s) => !categorySlug || s.category.slug === categorySlug,
+  );
+  // "Show first" numbers, by SKU. Blank, zero or negative = not pinned.
+  const pin = new Map(
+    filtered
+      .filter((s) => typeof s.showFirst === "number" && s.showFirst > 0)
+      .map((s) => [s.sku, s.showFirst as number]),
+  );
+  const categoryRank = new Map(categories.map((c, i) => [c.slug, i]));
+
+  const shaped = filtered
     .map((s): GalleryStone => ({
       sku: s.sku,
       name: s.name,
@@ -135,17 +149,29 @@ export async function getGalleryStones(categorySlug?: string) {
     }))
     .sort((a, b) => a.sku.localeCompare(b.sku));
 
-  // Round-robin across categories, in their CMS sort order.
+  // Pinned stones first: by number, then tab order, then SKU.
+  const pinned = shaped
+    .filter((s) => pin.has(s.sku))
+    .sort(
+      (a, b) =>
+        pin.get(a.sku)! - pin.get(b.sku)! ||
+        (categoryRank.get(a.categorySlug) ?? 999) -
+          (categoryRank.get(b.categorySlug) ?? 999) ||
+        a.sku.localeCompare(b.sku),
+    );
+  const rest = shaped.filter((s) => !pin.has(s.sku));
+
+  // Then round-robin across categories, in their CMS sort order.
   const buckets = categories
-    .map((c) => shaped.filter((s) => s.categorySlug === c.slug))
+    .map((c) => rest.filter((s) => s.categorySlug === c.slug))
     .filter((bucket) => bucket.length > 0);
-  const mixed: GalleryStone[] = [];
+  const mixed: GalleryStone[] = [...pinned];
   for (let i = 0; mixed.length < shaped.length; i++) {
     for (const bucket of buckets) if (bucket[i]) mixed.push(bucket[i]);
     if (i > shaped.length) break; // safety net
   }
   // Stones whose category isn't in the list still appear, at the end.
-  for (const s of shaped) if (!mixed.includes(s)) mixed.push(s);
+  for (const s of rest) if (!mixed.includes(s)) mixed.push(s);
   return mixed;
 }
 
