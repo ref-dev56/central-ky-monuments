@@ -4,6 +4,7 @@
   "category": "content/categories/upright-headstones.json",
   "series": "Companion uprights",
   "description": "A companion upright featuring an etched mountain and pine landscape above the family name.",
+  "showFirst": 2,
   "sizes": [
     "36\"x6\"x20\" or larger"
   ],

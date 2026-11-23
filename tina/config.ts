@@ -145,6 +145,13 @@ export default defineConfig({
             ui: { component: "textarea" },
           },
           {
+            type: "number",
+            name: "showFirst",
+            label: "Show first",
+            description:
+              "Optional. Puts this design at the front of the gallery, on the homepage and on its category page: 1 shows first, then 2, and so on. Leave blank for the usual order. If two designs share a number, they follow tab order, then design number.",
+          },
+          {
             type: "string",
             name: "sizes",
             label: "Size",
